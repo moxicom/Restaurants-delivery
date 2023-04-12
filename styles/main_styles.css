@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); 
+/* font-family: 'Raleway', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+/* font-family: 'Raleway', sans-serif; */
+
+body, html{
+
+    margin: 0;
+    padding: 0;
+    overflow-x:hidden
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    background-color: #212121;
+}
+
+.gold{
+    color: #CEB64C;
+}
+
+#menu{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu a{
+    margin: 0 30px;
+    font-size: 1.3em;
+    color: #CEB64C;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.5s, text-shadow 0.5s ease-in-out;    
+}
+
+#menu a:hover{
+    color: #ebe1b8;
+    text-shadow: 0px 0px 10px #ceb64c80;
+}
+
+.food-page-item{
+    margin-top: 8%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.food-page-item-img{
+    width: 50%;
+    align-items: center;
+}
+
+.food-page-item-img img{
+    width: 100%;
+}
+
+.food-page-item-description{
+    text-align: left;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    background-color: #212121;
+    color: white;
+    margin-left: -150px;
+}
+.food-page-item-description h1{
+    color: #CEB64C;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: #CEB64C 2px solid;
+    font-size: 2.5em;
+}
+
+.food-page-item-description p{
+    width: 100%;
+    font-size: 1.1em;
+}
+
+.food-page-item-cost{
+    width: 100%;
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.food-page-item-btn{
+    background-color: #CEB64C;
+    height: 50px;
+    color: #272727;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    transition: 0.2s ease-in-out;
+}
+
+.food-page-item-btn:hover{
+    background-color: #ebe1b8;
+    box-shadow: 0 0 30px 0 #ceb64c42;
+    color: #272727;
+}
+
+.food-page-item-mobile{
+    display: none;
+    color: #CEB64C;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: #CEB64C 2px solid;
+    font-size: 2.5em;
+}
+
+@media (min-width:851px) and (max-width: 1400px){
+    .food-page-item-description{
+        margin-left: -20px;
+    }
+
+    .food-page-item-img{
+        width: 65%;
+        margin-right: -100px;
+    }
+}
+
+@media (max-width:850px){
+    .food-page-item-img{
+        width: 100%;
+        margin-right: -100px;
+    }
+    .food-page-item-description h1{
+        display: none;
+    }
+    .food-page-item-mobile{
+        display: block;
+        width: 90%;
+        text-align: center;
+    }
+    .food-page-item-description{
+        width: 100%;
+        margin: 15px;
+    }
+
+}
+
+
+
+
+
+
