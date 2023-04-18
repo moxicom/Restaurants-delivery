@@ -5,30 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main_styles.css">
+    <link rel="stylesheet" href="styles/main_page.css">
     <title>Главная</title>
 </head>
 <body>
     <div id="menu">
         <a href="#">
-            На главную
-        </a>
-        <a href="#">
             О нас
         </a>
     </div>
-    <div class="food-page-item">
-        <h1 class="food-page-item-mobile">ПИЦЦА СЫРНАЯ</h1>
-        <div class="food-page-item-img">
-            <img src="content/pizza.png">
+    <div id="top-container">
+        <h1>
+            Только самая<br>вкусная пицца
+        </h1>
+        <a href="#food" class="scrollto">
+            Перейти к меню
+        </a>
+    </div>
+    <div id="enjoy-container">
+        <div class="cont-text mobile-visible">
+            <h1>
+                Наслаждайтесь<br><span class="gold">изысканным</span> вкусом
+            </h1>
         </div>
-        <div class="food-page-item-description">
-            <h1>ПИЦЦА СЫРНАЯ</h1>
-            <span class="food-page-item-cost">$10.00</span>
-            <p>Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо</p>
-            <button class="food-page-item-btn">
-                Добавить в корзину
-            </button>
+        <div class="cont-img">
+            <img src="content/main_page/enjoying.jpg">
+        </div>
+        <div class="cont-text mobile-invisible">
+            <h1>
+                Наслаждайтесь<br><span class="gold">изысканным</span> вкусом
+            </h1>
         </div>
     </div>
+    
+    <div id="cook-container">
+        <div class="cook-text mobile-visible">
+            <h1>
+                Готовят <span class="gold">лучшие</span> <br>повара
+            </h1>
+        </div>
+        <div class="cook-text mobile-invisible">
+            <h1>
+                Готовят <span class="gold">лучшие</span> <br>повара
+            </h1>
+        </div>
+        <div class="cont-img">
+            <img src="content/main_page/cook.jpg">
+        </div>
+    </div>
+        <h1 id = "food" class="header">Наше меню</h1>
+    <div style="width: 83%; margin-left: 8.3%;margin-bottom: 10px; height: 1px; border-top: solid 1px #CEB64C;"></div>
+    <div id="sort-menu">
+        <a href="" class="sort-menu-item">Сортировка по цене</a>
+        <a href="" class="sort-menu-item">Сортировка по размеру</a>
+    </div>
+    <div id="food-menu">
+        <div class="food-item">
+            <div class="food-item-prop">
+                <img src="content/main_page/pizza.png">
+                <div class="food-item-buttons">
+                    <a href="" class="food-item-button">В корзину</a>
+                </div>
+            </div>
+            <div class="food-item-title">
+                <a href="">Пицца</a>
+                <span class="food-item-price">$ 100500</span>
+            </div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-prop">
+                <img src="content/main_page/pizza_prod.jpg">
+                <div class="food-item-buttons">
+                    <a href="" class="food-item-button">В корзину</a>
+                </div>
+            </div>
+            <div class="food-item-title">
+                <a href="">Пицца</a>
+                <span class="food-item-price">$ 100500</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- подключаем скрипты -->
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/scroll.js"></script>
 </body>
 </html>
