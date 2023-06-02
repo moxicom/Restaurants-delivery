@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); 
+/*@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');*/
 /* font-family: 'Raleway', sans-serif; */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');*/
 /* font-family: 'Raleway', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Geologica&display=swap');
+/*font-family: 'Geologica', sans-serif;*/
 
 body, html{
 
@@ -11,8 +14,39 @@ body, html{
 }
 
 body{
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-family: 'Geologica', sans-serif;
     background-color: #212121;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#menu{
+    background-color:#212121cc;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu a{
+    font-size: 1.3em;
+    color: #CEB64C;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s ease-in-out;
+    margin: 0 20px;
+}
+
+#menu a:hover{
+    color: #ebe1b8;
+    text-shadow: 0 0 10px #ceb64c80;
 }
 
 .gold{

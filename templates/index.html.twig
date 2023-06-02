@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/main_styles.css">
-    <link rel="stylesheet" href="../styles/main_page.css">
-    <title>Главная</title>
+    <title>{% block title %}Главная{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="./styles/main_page.css">
+        <link rel="stylesheet" href="./styles/main_styles.css">
+        <link rel="icon" type="image/x-icon" href="./styles/favicon.ico">
+    {% endblock %}
 </head>
 <body>
-    <div id="menu">
-        <a href="#">
-            О нас
-        </a>
-    </div>
+    <header>
+        <div id="menu">
+            <a href="#">
+                О нас
+            </a>
+        </div>
+    </header>
     <div id="top-container">
         <h1>
             Только самая<br>вкусная пицца
@@ -29,7 +34,7 @@
             </h1>
         </div>
         <div class="cont-img">
-            <img src="../content/main_page/enjoying.jpg">
+            <img src="./content/main_page/enjoying.jpg">
         </div>
         <div class="cont-text mobile-invisible">
             <h1>
@@ -50,44 +55,37 @@
             </h1>
         </div>
         <div class="cont-img">
-            <img src="../content/main_page/cook.jpg">
+            <img src="./content/main_page/cook.jpg">
         </div>
     </div>
-        <h1 id = "food" class="header">Наше меню</h1>
+        <h1 id="food" class="header">Рекомендуемые блюда</h1>
     <div style="width: 83%; margin-left: 8.3%;margin-bottom: 10px; height: 1px; border-top: solid 1px #CEB64C;"></div>
-    <div id="sort-menu">
+    
+    {# <div id="sort-menu">
         <a href="" class="sort-menu-item">Сортировка по цене</a>
         <a href="" class="sort-menu-item">Сортировка по размеру</a>
-    </div>
+    </div> #}
+
+    {# ############### MENU ITEMS ###############  #}
     <div id="food-menu">
-        <div class="food-item">
-            <div class="food-item-prop">
-                <img src="../content/main_page/pizza.png">
-                <div class="food-item-buttons">
-                    <a href="" class="food-item-button">В корзину</a>
+        {% for item in items %}
+            <div class="food-item">
+                <div class="food-item-prop">
+                    <img src="./uploaded_images/{{item.image_name}}.jpg">
+                    <div class="food-item-buttons">
+                        <a href="" class="food-item-button">В корзину</a>
+                    </div>
+                </div>
+                <div class="food-item-title">
+                    <a href=""> {{ item.dishName }} </a>
+                    <span class="food-item-price">₽ {{ item.cost }}</span>
                 </div>
             </div>
-            <div class="food-item-title">
-                <a href="">Пицца</a>
-                <span class="food-item-price">$ 100500</span>
-            </div>
-        </div>
-        <div class="food-item">
-            <div class="food-item-prop">
-                <img src="../content/main_page/pizza_prod.jpg">
-                <div class="food-item-buttons">
-                    <a href="" class="food-item-button">В корзину</a>
-                </div>
-            </div>
-            <div class="food-item-title">
-                <a href="">Пицца</a>
-                <span class="food-item-price">$ 100500</span>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
     <!-- подключаем скрипты -->
-    <script src="../js/jquery-3.6.4.min.js"></script>
-    <script src="../js/scroll.js"></script>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script src="./js/scroll.js"></script>
 </body>
 </html>

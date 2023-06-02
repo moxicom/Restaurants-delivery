@@ -5,7 +5,7 @@ $('a.scrollto').on('click', function() {
     $('html, body').animate({
         scrollTop: $(href).offset().top
     }, {
-        duration: 370,   // по умолчанию «400» 
+        duration: 200,   // по умолчанию «400» 
         easing: "linear" // по умолчанию «swing» 
     });
 
