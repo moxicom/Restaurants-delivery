@@ -2,7 +2,7 @@
 
 
 
-$db_hostname = 'localhost';
+$db_hostname = '26.3.98.145';
 $db_database = 'rest_delivery';
 $db_username = 'root';
 $db_password = '';
