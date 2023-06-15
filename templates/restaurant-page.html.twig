@@ -4,18 +4,7 @@
 {% block content %}
 <div id="food-menu">
     {% for dish in dishes %}
-        <div class="food-item">
-                <div class="food-item-prop">
-                    <img src="../uploaded_images/{{dish.image_name}}.jpg">
-                    <div class="food-item-buttons">
-                        <a href="" class="food-item-button">В корзину</a>
-                    </div>
-                </div>
-                <div class="food-item-title">
-                    <a href=""> {{ dish.dishName }} </a>
-                    <span class="food-item-price">₽ {{ dish.cost }}</span>
-                </div>
-        </div>
+        {% include "./elements/dish-card.html.twig" with {"item": dish} %}
     {% endfor %}
 </div>
 {% endblock %}

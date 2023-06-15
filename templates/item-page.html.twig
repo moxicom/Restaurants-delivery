@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{# <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,20 +16,24 @@
         <a href="#">
             О нас
         </a>
-    </div>
+    </div> #}
+
+{% extends "base.html.twig" %}
+{% block content %}
     <div class="food-page-item">
-        <h1 class="food-page-item-mobile">ПИЦЦА СЫРНАЯ</h1>
+        <h1 class="food-page-item-mobile">{{ dish.dishName }}</h1>
         <div class="food-page-item-img">
-            <img src="../content/pizza.png">
+            <img src="../uploaded_images/{{dish.image_name}}.jpg">
         </div>
         <div class="food-page-item-description">
-            <h1>ПИЦЦА СЫРНАЯ</h1>
-            <span class="food-page-item-cost">$10.00</span>
-            <p>Моцарелла, сыры чеддер и пармезан, фирменный соус альфредо</p>
+            <h1>{{ dish.dishName }}</h1>
+            <span class="food-page-item-cost">${{ dish.cost }}</span>
+            <p>{{dish.description}}</p>
             <button class="food-page-item-btn">
                 Добавить в корзину
             </button>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
+{# </body>
+</html> #}

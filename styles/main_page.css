@@ -9,7 +9,7 @@
     position: relative;
     /* height:850px; */
 
-    height: 104vh;
+    height: 95vh;
 
     background-image: url("../content/main_page/main_cor.jpg");
     width: 100%;
@@ -278,6 +278,7 @@
     text-shadow: none;
     font-weight: lighter;
     text-decoration: none;
+    text-align: center;
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 #to_rest_button:hover{

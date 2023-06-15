@@ -1,0 +1,12 @@
+<div class="food-item">
+    <div class="food-item-prop">
+        <img src="../uploaded_images/{{item.image_name}}.jpg">
+        <div class="food-item-buttons">
+            <a href="" class="food-item-button">В корзину</a>
+        </div>
+    </div>
+    <div class="food-item-title">
+        <a href="../controllers/dish_page.php?id={{item.id}}"> {{ item.dishName }} </a>
+        <span class="food-item-price">₽ {{ item.cost }}</span>
+    </div>
+</div>

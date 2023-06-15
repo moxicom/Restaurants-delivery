@@ -78,7 +78,7 @@ header {
 }
 
 .food-page-item-img img{
-    width: 100%;
+    width: 65%;
 }
 
 .food-page-item-description{
@@ -147,19 +147,26 @@ header {
 
 @media (min-width:851px) and (max-width: 1400px){
     .food-page-item-description{
-        margin-left: -20px;
+        /* margin-left: -20px; */
     }
 
     .food-page-item-img{
         width: 65%;
-        margin-right: -100px;
+        /* margin-right: -100px; */
     }
 }
 
 @media (max-width:850px){
     .food-page-item-img{
         width: 100%;
-        margin-right: -100px;
+        align-items: center;
+        justify-content: center;
+    }
+    .food-page-item-img img{
+        width: 90%;
+        display: flex;
+        margin: 0 auto;
+        /* margin-right: -100px; */
     }
     .food-page-item-description h1{
         display: none;
@@ -170,10 +177,17 @@ header {
         text-align: center;
     }
     .food-page-item-description{
-        width: 100%;
+        width: 85%;
         margin: 15px;
+        text-align: center;
     }
 
+}
+
+@media (max-width: 450px){
+    .header{
+        font-size: 1.8em;
+    }
 }
 
 /* ИЗМЕНЕНИЕ */

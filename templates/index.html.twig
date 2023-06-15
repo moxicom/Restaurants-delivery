@@ -69,18 +69,7 @@
     {# ############### MENU ITEMS ###############  #}
     <div id="food-menu">
         {% for item in items %}
-            <div class="food-item">
-                <div class="food-item-prop">
-                    <img src="./uploaded_images/{{item.image_name}}.jpg">
-                    <div class="food-item-buttons">
-                        <a href="" class="food-item-button">В корзину</a>
-                    </div>
-                </div>
-                <div class="food-item-title">
-                    <a href=""> {{ item.dishName }} </a>
-                    <span class="food-item-price">₽ {{ item.cost }}</span>
-                </div>
-            </div>
+            {% include "./elements/dish-card.html.twig" with {"item": item} %}
         {% endfor %}
     </div>
     <div style="width: 80%; margin: 0 auto; color: white; font-size: 32px; text-align: center"> 
