@@ -7,8 +7,10 @@
     justify-content: center;
 
     position: relative;
+    /* height:850px; */
 
-    height:850px;
+    height: 104vh;
+
     background-image: url("../content/main_page/main_cor.jpg");
     width: 100%;
     background-size: cover;
@@ -152,7 +154,8 @@
     height: 340px;
     align-items: center;
     text-decoration: none;
-    background-color: white;
+    /* background-color: white; */
+    background-color: #CEB64C;
     width: 250px;
     margin-right: 25px;
     margin-left: 25px;
@@ -161,6 +164,11 @@
     font-size: 14px;
     text-align: center;
     overflow: hidden;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.445);
+    transition: box-shadow 0.3s ease
+}
+.food-item:hover{
+    box-shadow: 0 5px 30px 0 rgba(206, 182, 76, 0.3);
 }
 
 .food-item-prop{
@@ -225,7 +233,7 @@
 .food-item-title a{
     font-size: 1.5em;
     text-decoration: none;
-    color: #2e2e2e;
+    color: #272727;
     font-weight: 600;
     margin: 15px 0 5px;
     padding-bottom: 7px;
@@ -239,7 +247,7 @@
     position: absolute;
     width: 40px;
     height: 2px;
-    background: #2e2e2e;
+    background: #272727;
     left: 50%;
     margin-left: -20px;
     bottom: 0;
@@ -247,17 +255,34 @@
 }
 
 .food-item-title a:hover{
-    color: #ceb64c;
+    color: #424242;
+    
 }
 
 .food-item-title:hover a:after{
-    background: #c0a97a;
+    background: #ffdc3f;
 }
 
 .food-item-price{
     font-size: 1.3em;
     color: #000000c2;
     font-weight: normal;
+}
+
+#to_rest_button{
+    padding: 10px 60px;
+    font-size: 30px;
+    background-color: #CEB64C;
+    border-radius: 50px;
+    color:#212121;
+    text-shadow: none;
+    font-weight: lighter;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+#to_rest_button:hover{
+    background-color: #ebe1b8;
+    box-shadow: 0 0 50px #CEB64C;
 }
 
 @media (max-width: 1100px){

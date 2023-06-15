@@ -140,6 +140,11 @@ header {
     font-size: 2.5em;
 }
 
+.horizontal-line{
+    width: 100%;
+     
+}
+
 @media (min-width:851px) and (max-width: 1400px){
     .food-page-item-description{
         margin-left: -20px;

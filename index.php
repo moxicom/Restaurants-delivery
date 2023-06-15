@@ -12,6 +12,13 @@ $view = new Environment($loader);
 // НАЗВАНИЕ -> ЦЕНА -> НАЗВАНИЕ КАРТИНКИ -> КАРТИНКА ИЗ ПАПКИ -> 
 // ID ПРЕДМЕТА (для перехода на страницу товара) -> все добавить в массив
 
+$sql = "SELECT COUNT(*) FROM `restaurants`";
+$result = $db->query($sql);
+$restAmount = $result->fetch_assoc()['COUNT(*)'];
+$sql = "SELECT COUNT(*) FROM `menu`";
+$result = $db->query($sql);
+$dishesAmount = $result->fetch_assoc()['COUNT(*)'];
+
 $sql = "SELECT * FROM recommended";
 $result = $db->query($sql);
 
@@ -43,14 +50,13 @@ if($result->num_rows > 0){
         }
     }
 }
-else{
-    
-}
 
 try {
     echo $view->render("index.html.twig", array(
 "title" => "Главная",
-"items" => $recommended
+"items" => $recommended,
+"restaurantsAmount" =>$restAmount,
+"dishesAmount" => $dishesAmount
     ));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }
