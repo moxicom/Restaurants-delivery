@@ -21,6 +21,15 @@ if(isset($_GET["id"])){
             while($row = $result->fetch_assoc()){
                 $dishes[] = $row;
             }
+            for($i = 0; $i < count($dishes); $i++){
+                $id = $dishes[$i]['image_id'];
+                $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
+                if ($nameSql->num_rows > 0){
+                    $dishes[$i]['image_name'] = $nameSql->fetch_assoc()['image_name'];
+                }else{
+                    $dishes[$i]['image_name'] = "no_image";
+                }
+            }
         }
     }
     else{
@@ -30,11 +39,12 @@ if(isset($_GET["id"])){
 else{
     $error = true;
 }
-
+// $restaurant["restaurantName"]
 try {
     echo $view->render("restaurant-page.html.twig", array(
-"title" => "Главная",
-"items" => $recommended
+"title" => $restaurant["restaurantName"],
+"header" => $restaurant["restaurantName"],
+"dishes" => $dishes
     ));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }
