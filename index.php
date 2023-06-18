@@ -1,7 +1,12 @@
 <?php
-require_once "db_connection.php";
-require_once "vendor/autoload.php";
 
+require_once "db_connection.php";
+require_once "./controllers/functions.php";
+require_once "vendor/autoload.php";
+/**
+ * @include "db_connection.php"
+ * @var $db
+ */
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
 
@@ -40,13 +45,14 @@ if($result->num_rows > 0){
             }
         }    
         for($i = 0; $i < count($recommended); $i++){
-            $id = $recommended[$i]['image_id'];
-            $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
-            if ($nameSql->num_rows > 0){
-                $recommended[$i]['image_name'] = $nameSql->fetch_assoc()['image_name'];
-            }else{
-                $recommended[$i]['image_name'] = "no_image";
-            }
+            $image_id = $recommended[$i]['image_id'];
+            $recommended[$i]["image_name"] = getImageNameById($image_id, $db);
+            // $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
+            // if ($nameSql->num_rows > 0){
+            //     $recommended[$i]['image_name'] = $nameSql->fetch_assoc()['image_name'];
+            // }else{
+            //     $recommended[$i]['image_name'] = "no_image";
+            // }
         }
     }
 }

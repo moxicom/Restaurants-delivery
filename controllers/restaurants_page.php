@@ -1,6 +1,7 @@
 <?php
 
 require_once "../db_connection.php";
+require_once "./functions.php";
 require_once "../vendor/autoload.php";
 
 use \Twig\Loader\FilesystemLoader;
@@ -15,6 +16,8 @@ $result = $db->query($sql);
 if($result->num_rows > 0){
     $restaurants = array();
     while($row = $result->fetch_assoc()){
+        $image_id = $row["image_id"];
+        $row["image_name"] = getImageNameById($image_id, $db);
         $restaurants[] = $row;
     }
 }

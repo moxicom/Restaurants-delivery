@@ -4,10 +4,10 @@
 {% block content %}
     <div class="restaurant-container">
             {% for restaurant in restaurants %}
-            <a href="../controllers/restaurant_page.php?id={{restaurant.id}}" style="text-decoration: none; color:#212121;">
+            <a href="../controllers/restaurant_page.php?id={{ restaurant.id }}" style="text-decoration: none; color:#212121;">
                 <div class="restaurant-card">
-                    <img src="../uploaded_images/no_image.jpg" alt="Изображение ресторана" class="restaurant-image">
-                    <h2 class="restaurant-name">{{restaurant.restaurantName}}</h2>
+                    <img src="../uploaded_images/{{ restaurant.image_name }}.jpg" alt="Изображение ресторана" class="restaurant-image">
+                    <h2 class="restaurant-name">{{ restaurant.restaurantName }}</h2>
                 </div>  
             </a>
             {% endfor %}

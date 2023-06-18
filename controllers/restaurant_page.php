@@ -1,5 +1,6 @@
 <?php
 require_once "../db_connection.php";
+require_once "./functions.php";
 require_once "../vendor/autoload.php";
 
 use \Twig\Loader\FilesystemLoader;
@@ -22,13 +23,14 @@ if(isset($_GET["id"])){
                 $dishes[] = $row;
             }
             for($i = 0; $i < count($dishes); $i++){
-                $id = $dishes[$i]['image_id'];
-                $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
-                if ($nameSql->num_rows > 0){
-                    $dishes[$i]['image_name'] = $nameSql->fetch_assoc()['image_name'];
-                }else{
-                    $dishes[$i]['image_name'] = "no_image";
-                }
+                $image_id = $dishes[$i]['image_id'];
+                $dishes[$i]["image_name"] = getImageNameById($image_id, $db);
+                // $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
+                // if ($nameSql->num_rows > 0){
+                //     $dishes[$i]['image_name'] = $nameSql->fetch_assoc()['image_name'];
+                // }else{
+                //     $dishes[$i]['image_name'] = "no_image";
+                // }
             }
         }
     }

@@ -3,6 +3,11 @@ session_start();
 
 require_once("../db_connection.php");
 
+/**
+ * @include "../db_connection.php"
+ * @var $db
+ */
+
 if (!isset($_SESSION["logged"])) {
     header("location: ../login.php");
     exit;
@@ -27,7 +32,7 @@ if (!isset($_SESSION["logged"])) {
         $recommended .= '<td>';
         $recommended .= '<form method="POST" action="delete_recommended.php">';
         $recommended .= '<input type="hidden" name="dishId" value="' . $dish['id'] . '">';
-        $recommended .= '<button type="submit" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Delete</button>';
+        $recommended .= '<button type="submit" class="btn btn-primary btn-sm btn-block" role="button" aria-pressed="true">Удалить</button>';
         $recommended .= '</form>';
         $recommended .= '</td>';
         $recommended .= '</tr>';
@@ -131,7 +136,7 @@ if (!isset($_SESSION["logged"])) {
         </div>
         <div class="row">
             <h2>РЕКОМЕНДУЕМЫЕ БЛЮДА</h2>
-            <table class="table">
+            <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -157,6 +162,8 @@ if (!isset($_SESSION["logged"])) {
                 echo '</form>';
             }
             ?>
-        
+            <a href="restauarants.php" class="btn btn-primary btn-lg btn-block" role="button"
+               style="margin-top: 50px">Перейти к настройкам ресторанов</a>
+
     </div>
 </body>
