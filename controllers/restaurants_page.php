@@ -23,7 +23,9 @@ if($result->num_rows > 0){
 }
 try{
     echo $view->render("restaurants-page.html.twig", array(
-        "restaurants" => $restaurants
+        "restaurants" => $restaurants,
+	    "header" => "Рестораны",
+	    "title" => "Рестораны"
     ));
 }
 catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e){}

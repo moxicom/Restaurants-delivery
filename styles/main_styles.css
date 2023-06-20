@@ -162,6 +162,10 @@ header {
     height: 10px;
     transition: 0.2s ease-in-out;
 }
+.search-container input:hover{
+    border-color: #ebe1b8;
+    box-shadow: 0 0 10px #CEB64C;
+}
 .search-container input:focus{
     box-shadow: 0 0 10px #ceb64c;
     outline: none;
