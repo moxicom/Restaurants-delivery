@@ -4,7 +4,7 @@ function getImageNameById(&$id, &$db){
     if ($nameSql->num_rows > 0){
         $image_name = $nameSql->fetch_assoc()['image_name'];
     }else{
-        $image_name = "no_image";
+        $image_name = "no_image.jpg";
     }
     return $image_name; 
 }

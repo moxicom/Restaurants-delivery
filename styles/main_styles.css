@@ -29,10 +29,11 @@ header {
 
 #menu{
     background-color:#212121cc;
-    height: 45px;
+    padding: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 #menu a{
@@ -144,6 +145,47 @@ header {
     width: 100%;
      
 }
+/* SEARCH */
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-container input {
+    font-family: 'Geologica', sans-serif;
+    padding: 8px 15px;
+    font-size: 17px;
+    border: #ceb64c solid 2px;
+    border-radius: 50px 0 0 50px;
+    background-color: transparent;
+    color: white;
+    height: 10px;
+    transition: 0.2s ease-in-out;
+}
+.search-container input:focus{
+    box-shadow: 0 0 10px #ceb64c;
+    outline: none;
+    border-color: #ebe1b8;
+}
+.search-container button{
+    padding: 2px 25px;
+    font-family: 'Geologica', sans-serif;
+    font-size: 17px;
+    border: #ceb64c solid 2px;
+    border-radius: 0 50px 50px 0;
+    background-color: transparent;
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+.search-container button:hover{
+    background-color: #ebe1b8;
+    border-color: #ebe1b8;
+    box-shadow: 0 0 10px #CEB64C;
+    color: #272727;
+}
+
+/* END SEARCH */
+
 
 @media (min-width:851px) and (max-width: 1400px){
     .food-page-item-description{

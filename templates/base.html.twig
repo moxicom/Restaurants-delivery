@@ -53,6 +53,12 @@
         <a href="#">
             О нас
         </a>
+        <div class="search-container">
+            <form action="../controllers/search.php">
+                <input type="text" placeholder="Поиск.." name="search">
+                <button type="submit">Найти</button>
+            </form>
+        </div>
     </div>
     {% block links %}{% endblock %}
     <div class="row"><h1 class="header">{% block header %} {% endblock %} </h1></div>
