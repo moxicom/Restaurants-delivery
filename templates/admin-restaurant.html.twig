@@ -1,0 +1,24 @@
+{% extends "admin-base.html.twig" %}
+
+{% if error == false %}
+    {% set  main_header = "Настройка ресторана" %}
+{% else %}
+    {% set  main_header = "Данный ресторан не найден" %}
+{% endif %}
+
+{% block content %}
+    {% if error == false %}
+    <h1 style="margin: 0 auto"><img src="../uploaded_images/{{ restaurant.image_name }}" width="160" height="160" style="padding: 10px; border-radius: 30px;"/>{{ restaurant.restaurantName }}</h1>
+    <p><b>Адрес:</b> {{ restaurant.address}}</p>
+    <p><b>Кухня:</b>
+        {% if restaurant.cuisine %}
+            {{ restaurant.cuisine}}
+        {% else %}
+            {{ "Не указана" }}
+        {% endif %}
+    </p>
+    <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
+    <p><b>Почта:</b> {{ restaurant.email}}</p>
+    {% endif %}
+{% endblock %}
+

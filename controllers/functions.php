@@ -18,3 +18,17 @@ function getAllRestaurants(&$db): array
     }
     return $restaurants;
 }
+
+function getRestaurantById($id, &$db){
+	$sql = "SELECT * FROM `restaurants` WHERE id = ".$id;
+	$result = $db->query($sql);
+	if($result->num_rows > 0){
+		$restaurant = $result->fetch_assoc();
+		$image_id = $restaurant["image_id"];
+		$restaurant["image_name"] = getImageNameById($image_id, $db);
+		return $restaurant;
+	}
+	else{
+		return null;
+	}
+}
