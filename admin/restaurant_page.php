@@ -23,18 +23,35 @@ if (!isset($_SESSION["logged"])) {
 }
 else{
 	$error = false;
-	if(isset($_GET["id"]) && !empty($_GET["id"])){
-		$id = $_GET["id"];
+//	$restaurantIsEmpty = false;
+	$restaurant = array();
+	$dishes = array();
+	if(isset($_GET["id"])){
+		$id = $_GET["id"]; // id ресторана
 		$restaurant = getRestaurantById($id, $db);
 		if($restaurant == null){
 			$error = true;
 		}
 		$restaurant["image_name"] = getImageNameById($restaurant["image_id"], $db);
+
+		$sql = "SELECT * FROM `menu` WHERE `restaurantId` = $id";
+		$result = $db->query($sql);
+		if($result->num_rows > 0){
+			$dishes = array();
+			while($row = $result->fetch_assoc()){
+				$dishes[] = $row;
+			}
+			for($i = 0; $i < count($dishes); $i++){
+				$image_id = $dishes[$i]['image_id'];
+				$dishes[$i]["image_name"] = getImageNameById($image_id, $db);
+			}
+		}
 	}
 	try {
 		echo $view->render("admin-restaurant.html.twig", array(
 		"restaurant" => $restaurant,
-		"error" => $error
+		"dishes" => $dishes,
+		"error" => $error,
 		));
 	} catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 	}

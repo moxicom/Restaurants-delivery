@@ -5,8 +5,8 @@ $('a.scrollto').on('click', function() {
     $('html, body').animate({
         scrollTop: $(href).offset().top
     }, {
-        duration: 200,   // по умолчанию «400» 
-        easing: "linear" // по умолчанию «swing» 
+        duration: 400,   // по умолчанию «400»
+        easing: "swing" // по умолчанию «swing»
     });
 
     return false;

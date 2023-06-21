@@ -6,9 +6,13 @@
     {% set  main_header = "Данный ресторан не найден" %}
 {% endif %}
 
+{% block head %}
+    <link rel="stylesheet" href="../styles/admin-styles.css">
+{% endblock %}
+
 {% block content %}
     {% if error == false %}
-    <h1 style="margin: 0 auto"><img src="../uploaded_images/{{ restaurant.image_name }}" width="160" height="160" style="padding: 10px; border-radius: 30px;"/>{{ restaurant.restaurantName }}</h1>
+    <h1 style="margin: 0 auto; padding-top: 20px"><img src="../uploaded_images/{{ restaurant.image_name }}" width="160" height="160" style="padding: 10px; border-radius: 30px;"/>{{ restaurant.restaurantName }}</h1>
     <p><b>Адрес:</b> {{ restaurant.address}}</p>
     <p><b>Кухня:</b>
         {% if restaurant.cuisine %}
@@ -19,6 +23,70 @@
     </p>
     <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
     <p><b>Почта:</b> {{ restaurant.email}}</p>
+    <a href="#"><button  type="button" class="btn btn-primary">Редактировать</button></a>
+    <a href="#"><button type="button" class="btn btn-danger">Удалить</button></a>
+    <h2 style="padding: 30px 0 0 0">Блюда</h2>
+    <button type="button" class="btn btn-primary">Добавить новое</button>
+    <div class="cards-container">
+        {% for dish in dishes %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../uploaded_images/{{ dish.image_name }}" alt="Изображение" >
+                </div>
+                {% set maxDescriptionLength = 100 %}
+                <div class="product-info">
+                    <h3 class="product-title">{{ dish.dishName }}</h3>
+                    <p class="product-price">Цена: ₽{{ dish.cost }}</p>
+                    {% if dish.description | length > maxDescriptionLength %}
+                        {% set shortenedDescription = dish.description | slice(0, maxDescriptionLength) ~ '...' %}
+                        <p class="short-description">{{ shortenedDescription }}
+                            <a href="#" class="show-more">
+                                <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
+                                    Подробнее
+                                </button>
+                            </a>
+                        </p>
+                        <p class="full-description" style="display: none;">
+                            {{ dish.description }}
+                            <a href="#" class="show-less">
+                                <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
+                                    Скрыть
+                                </button>
+                            </a>
+                        </p>
+                    {% else %}
+                        <p>{{ product.description }}</p>
+                    {% endif %}
+{#                    <p class="product-description">{{ dish.description }}</p>#}
+                    <a href="#"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
+                    <a href="#"><button type="button" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        const showMoreButton = document.querySelector('.show-more');
+        const showLessButton = document.querySelector('.show-less');
+        const fullDescription = document.querySelector('.full-description');
+        const shortDescription = document.querySelector('.short-description');
+
+        showMoreButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            fullDescription.style.display = 'block';
+            showMoreButton.style.display = 'none';
+            shortDescription.style.display = 'none';
+            showLessButton.style.display = 'inline';
+
+        });
+        showLessButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            fullDescription.style.display = 'none';
+            showMoreButton.style.display = 'inline';
+            showLessButton.style.display = 'none';
+            shortDescription.style.display = 'block';
+
+        });
+    </script>
     {% endif %}
 {% endblock %}
 

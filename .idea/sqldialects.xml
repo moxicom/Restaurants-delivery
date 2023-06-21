@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/admin/create_restaurant.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/admin/restaurant_page.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/controllers/functions.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/controllers/search.php" dialect="GenericSQL" />
   </component>
