@@ -132,7 +132,7 @@ if (!isset($_SESSION["logged"])) {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p style="margin-top:40px"><strong> WELCOME
+                <p style="margin-top:40px"><strong> Панель администратора
                     </strong> <a href="logout.php" style="float: right;" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Log Out</a></p>
             </div>
         </div>

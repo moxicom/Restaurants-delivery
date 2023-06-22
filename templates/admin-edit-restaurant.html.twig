@@ -1,0 +1,38 @@
+{% extends "admin-base.html.twig" %}
+
+{% if error == true %}
+    {% set main_header = "Ресторан не найден" %}
+{% else %}
+    {% set main_header = "Редактирование " ~ restaurant.restaurantName %}
+{% endif %}
+
+{% block content %}
+    <form action="../admin/create_restaurant.php" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="inputName">Название</label>
+            <input type="text" class="form-control" id="inputName" name="name" placeholder="Введите название" value="{{ restaurant.restaurantName }}" required>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Адрес ресторана</label>
+            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Введите адрес" value="{{ restaurant.address }}" required>
+            <small id="addressHelp" class="form-text text-muted">Адрес ресторана, из которого будет осуществляться доставка</small>
+        </div>
+        <div class="form-group">
+            <label for="inputCuisine">Кухни</label>
+            <input type="text" class="form-control" id="inputCuisine" name="cuisine" placeholder="Введите название" value="{{ restaurant.cuisine }}" required>
+        </div>
+        <div class="form-group">
+            <label for="inputNumber">Основной номер телефона</label>
+            <input type="number" class="form-control" id="inputNumber" name="number" placeholder="Введите основной номер телефона" value="{{ restaurant.phoneNumber }}" required>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Основная почта</label>
+            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Введите основную почту" value="{{ restaurant.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Иконка ресторана</label>
+            <input class="form-control" type="file" name="image" id="formFile">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+{% endblock %}

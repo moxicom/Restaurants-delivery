@@ -9,6 +9,10 @@ use \Twig\Environment;
 $loader = new FilesystemLoader("../templates");
 $view = new Environment($loader);
 
+/**
+ * @var $db
+ */
+
 if(isset($_GET["id"])){
     $id = $_GET["id"];
     $sql = "SELECT * FROM `restaurants` WHERE `id` = $id";

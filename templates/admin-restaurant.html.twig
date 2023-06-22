@@ -12,7 +12,12 @@
 
 {% block content %}
     {% if error == false %}
-    <h1 style="margin: 0 auto; padding-top: 20px"><img src="../uploaded_images/{{ restaurant.image_name }}" width="160" height="160" style="padding: 10px; border-radius: 30px;"/>{{ restaurant.restaurantName }}</h1>
+    <h1 style="padding-top: 20px"><img src="../uploaded_images/{{ restaurant.image_name }}"
+                                       width="160"
+                                       height="160"
+                                       style="margin: 0 10px 0 0; border-radius: 10px;"/>
+        {{ restaurant.restaurantName }}
+    </h1>
     <p><b>Адрес:</b> {{ restaurant.address}}</p>
     <p><b>Кухня:</b>
         {% if restaurant.cuisine %}
@@ -23,7 +28,7 @@
     </p>
     <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
     <p><b>Почта:</b> {{ restaurant.email}}</p>
-    <a href="#"><button  type="button" class="btn btn-primary">Редактировать</button></a>
+    <a href="../admin/edit_restaurant.php?id={{ restaurant.id }}"><button  type="button" class="btn btn-primary">Редактировать</button></a>
     <a href="#"><button type="button" class="btn btn-danger">Удалить</button></a>
     <h2 style="padding: 30px 0 0 0">Блюда</h2>
     <button type="button" class="btn btn-primary">Добавить новое</button>

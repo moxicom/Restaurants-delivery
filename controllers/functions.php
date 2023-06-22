@@ -32,3 +32,12 @@ function getRestaurantById($id, &$db){
 		return null;
 	}
 }
+
+function restaurantExist(&$id, &$db){
+	$sql = "SELECT * FROM `restaurants` WHERE `id` = $id";
+	$result = $db->query($sql);
+	if($result->num_rows > 0){
+		return true;
+	}
+	return false;
+}
