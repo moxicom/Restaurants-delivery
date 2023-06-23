@@ -1,13 +1,16 @@
 {% extends "admin-base.html.twig" %}
 
-{% if error == true %}
+{% if errorGet == true %}
     {% set main_header = "Ресторан не найден" %}
 {% else %}
     {% set main_header = "Редактирование " ~ restaurant.restaurantName %}
 {% endif %}
 
 {% block content %}
-    <form action="../admin/create_restaurant.php" method="POST" enctype="multipart/form-data">
+{% if errorGet == false %}
+    <p>{{ errorText }}</p>
+    <form action="../admin/edit_restaurant.php?id={{ restaurant.id }}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="saveRestId" value="{{ restaurant.id }}">
         <div class="form-group">
             <label for="inputName">Название</label>
             <input type="text" class="form-control" id="inputName" name="name" placeholder="Введите название" value="{{ restaurant.restaurantName }}" required>
@@ -29,10 +32,15 @@
             <label for="inputEmail">Основная почта</label>
             <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Введите основную почту" value="{{ restaurant.email }}" required>
         </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Иконка ресторана</label>
-            <input class="form-control" type="file" name="image" id="formFile">
-        </div>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="submit" name="save" class="btn btn-primary">Сохранить</button>
     </form>
+<form action="../admin/edit_restaurant.php?id={{ restaurant.id }}" method="POST" enctype="multipart/form-data" style="margin-top: 40px">
+    <input type="hidden" name="updateImageRestId" value="{{ restaurant.id }}">
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Иконка ресторана</label>
+        <input class="form-control" type="file" name="image" id="formFile" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Изменить</button>
+</form>
+{% endif %}
 {% endblock %}

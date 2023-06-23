@@ -3,7 +3,9 @@ session_start();
 
 require_once("../db_connection.php");
 require_once("../controllers/functions.php");
-require_once "../vendor/autoload.php";
+require_once ("../vendor/autoload.php");
+require_once ("functions.php");
+
 
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
@@ -26,31 +28,8 @@ else{
 		$image_error = false;
 		$insertedImageId = 0;
 		if ($_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-			// Проверяем тип файла
-			echo "зашел в files";
-			$mime = mime_content_type($_FILES['image']['tmp_name']);
-			if (strpos($mime, 'image') === 0) {
-				// Создаем уникальное имя файла
-				$filename = uniqid() . '_' . $_FILES['image']['name'];
-
-				// Сохраняем загруженный файл на удаленный сервер
-				$remoteDir = '../uploaded_images/'; // Замените на нужный путь на удаленном сервере
-				$remotePath = $remoteDir . $filename;
-
-				if (move_uploaded_file($_FILES['image']['tmp_name'], $remotePath)) {
-					// inserting to table images
-					$sql = "INSERT INTO `images`(`image_name`) VALUES ('$filename')";
-					$result = $db->query($sql);
-					$insertedImageId = $db->insert_id;
-					echo 'File uploaded successfully.';
-				} else {
-					echo 'Error uploading file.';
-					$image_error = true;
-				}
-			} else {
-				echo 'Invalid file type.';
-				$image_error = true;
-			}
+			$image = $_FILES["image"];
+			addImage($image, $db, $image_error, $insertedImageId);
 		}
 		else{
 			echo "image error"."<br>";
