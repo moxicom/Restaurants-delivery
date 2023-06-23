@@ -46,12 +46,17 @@ else{
 		$cuisine = $_POST["cuisine"];
 		$number = $_POST["number"];
 		$email = strtolower($_POST["email"]);
-		$sql = "";
-//		$result = $db->query($sql);
-//		if($result === false){
-//			$errorText = "Ошибка внесения изменений";
-//		}
-//		$db->close();
+		$sql = "UPDATE `restaurants` SET `restaurantName`='$name',`address`='$address',`cuisine`='$cuisine',
+                         `phoneNumber`='$number',`email`='$email' WHERE `id`='$id'";
+		if($result = $db->query($sql)){
+			echo "success"."<br>";
+			header("location: restaurant_page.php?id=$id");
+			exit;
+		}
+		else {
+			$errorText = "Ошибка внесения изменений";
+		}
+		$db->close();
 	}
 	elseif (isset($_POST["updateImageRestId"])){
 		$id = $_POST["updateImageRestId"];
