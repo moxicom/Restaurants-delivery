@@ -1,5 +1,10 @@
 {% extends "admin-base.html.twig" %}
 {% block content %}
+    {% if errorText != null %}
+        <div class="alert alert-danger" role="alert">
+            {{ errorText }}
+        </div>
+    {% endif %}
     <form action="../admin/create_restaurant.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="inputName">Название</label>

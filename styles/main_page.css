@@ -143,6 +143,7 @@
 #food-menu{
     margin: 50px auto;
     /* height: 100%; */
+    min-height: 60vh;
     width: 84%;
     display: flex;
     flex-wrap: wrap;

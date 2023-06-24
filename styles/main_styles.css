@@ -190,6 +190,23 @@ header {
     color: #272727;
 }
 
+.footer{
+    margin-top: 50px;
+    background-color: black;
+    height: 150px;
+    display: flex;
+    align-items: center;
+}
+.footer div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.footer div a{
+    text-decoration: none;
+    color: #424242;
+}
+
 /* END SEARCH */
 
 

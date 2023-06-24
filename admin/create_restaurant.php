@@ -23,6 +23,7 @@ if (!isset($_SESSION["logged"])) {
 	exit;
 }
 else{
+	$errorText = null;
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		echo "post"."<br>";
 		$image_error = false;
@@ -45,7 +46,13 @@ else{
 			$insertedImageId = 0;
 		}
 		$sql = "INSERT INTO `restaurants`(`restaurantName`, `address`, `cuisine`, `phoneNumber`,`email`, `image_id`) VALUES ('$name','$address','$cuisine','$number','$email','$insertedImageId')";
-		$result = $db->query($sql);
+		if($db->query($sql)){
+			$id = $db->insert_id;
+			header("location: restaurant_page.php?id=$id");
+		}
+		else{
+			$errorText = "Не удалось создать ресторан";
+		}
 		$db->close();
 	}
 }
@@ -53,6 +60,7 @@ else{
 try {
 	echo $view->render("admin-create-restaurant.html.twig", array(
 		'main_header' => 'Создание ресторана',
+		'errorText' => $errorText
 	));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }

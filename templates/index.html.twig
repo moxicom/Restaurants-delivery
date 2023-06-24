@@ -73,7 +73,7 @@
     </div> #}
 
     {# ############### MENU ITEMS ###############  #}
-    <div id="food-menu">
+    <div id="food-menu" style="min-height: 0px;">
         {% for item in items %}
             {% include "./elements/dish-card.html.twig" with {"item": item} %}
         {% endfor %}
@@ -85,6 +85,7 @@
         <a id="to_rest_button" href="../controllers/restaurants_page.php"> Открыть рестораны </a>
     </div>
 
+    {% include "./elements/footer.html.twig" %}
     <!-- подключаем скрипты -->
     <script src="./js/jquery-3.6.4.min.js"></script>
     <script src="./js/scroll.js"></script>
