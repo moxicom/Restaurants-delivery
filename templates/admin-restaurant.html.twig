@@ -60,10 +60,10 @@
                             </a>
                         </p>
                     {% else %}
-                        <p>{{ product.description }}</p>
+                        <p>{{ dish.description }}</p>
                     {% endif %}
 {#                    <p class="product-description">{{ dish.description }}</p>#}
-                    <a href="#"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
+                    <a href="../admin/edit_dish.php?id={{ dish.id }}"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
                     <a href="#"><button type="button" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button></a>
                 </div>
             </div>

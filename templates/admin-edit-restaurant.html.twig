@@ -38,13 +38,13 @@
         </div>
         <button type="submit" name="save" class="btn btn-primary">Сохранить</button>
     </form>
-<form action="../admin/edit_restaurant.php?id={{ restaurant.id }}" method="POST" enctype="multipart/form-data" style="margin-top: 40px">
-    <input type="hidden" name="updateImageRestId" value="{{ restaurant.id }}">
-    <div class="mb-3">
-        <label for="formFile" class="form-label">Иконка ресторана</label>
-        <input class="form-control" type="file" name="image" id="formFile" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Изменить</button>
-</form>
+    <form action="../admin/edit_restaurant.php?id={{ restaurant.id }}" method="POST" enctype="multipart/form-data" style="margin-top: 40px">
+        <input type="hidden" name="updateImageRestId" value="{{ restaurant.id }}">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Иконка ресторана</label>
+            <input class="form-control" type="file" name="image" id="formFile" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Изменить</button>
+    </form>
 {% endif %}
 {% endblock %}

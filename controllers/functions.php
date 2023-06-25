@@ -46,3 +46,14 @@ function restaurantExist(&$id, &$db){
 	}
 	return false;
 }
+
+function getDishById(&$dish, &$dish_id, &$db){
+	$sql = "SELECT * FROM `menu` WHERE `id` = $dish_id";
+	if($result = $db->query($sql)){
+		$dish = $result->fetch_assoc();
+		return true;
+	}
+	else{
+		return false;
+	}
+}
