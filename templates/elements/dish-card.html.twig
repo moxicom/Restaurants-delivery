@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="food-item-title">
-        <a href="../controllers/dish_page.php?id={{item.id}}"> {{ item.dishName }} </a>
+        <a href="../controllers/dish_page.php?id={{item.id}}">{{ dish.dishName | slice(0, 18) ~ (dish.dishName|length > 15 ? '...' : '') }}</a>
         <span class="food-item-price">₽ {{ item.cost }}</span>
     </div>
 </div>

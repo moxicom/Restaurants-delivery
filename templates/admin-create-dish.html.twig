@@ -1,0 +1,52 @@
+{% extends "admin-base.html.twig" %}
+
+{% block content %}
+{% if getError == true %}
+    <div class="alert alert-danger" role="alert">
+        {{ errorText }}
+    </div>
+{% else %}
+    {% if errorText != null %}
+        <div class="alert alert-danger" role="alert">
+            {{ errorText }}
+        </div>
+    {% endif %}
+    <form action="../admin/create_dish.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="restId" value="{{ id }}">
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   class="form-control"
+                   placeholder="Введите название блюда" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control"
+                      id="description"
+                      rows="3"
+                      name = "description"
+                      placeholder="Введите описание" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="number"
+                   id="price"
+                   name="cost"
+                   class="form-control"
+                   placeholder="Введите цену" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="formFile" class="form-label">Загрузите иконку ресторана</label>
+            <input class="form-control"
+                   type="file"
+                   name="image"
+                   id="formFile" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+    </form>
+{% endif %}
+{% endblock %}

@@ -31,7 +31,7 @@
     <a href="../admin/edit_restaurant.php?id={{ restaurant.id }}"><button  type="button" class="btn btn-primary">Редактировать</button></a>
     <a href="#"><button type="button" class="btn btn-danger">Удалить</button></a>
     <h2 style="padding: 30px 0 0 0">Блюда</h2>
-    <button type="button" class="btn btn-primary">Добавить новое</button>
+    <a href="../admin/create_dish.php?id={{ restaurant.id }}"><button type="button" class="btn btn-primary">Добавить новое</button></a>
     <div class="cards-container">
         {% for dish in dishes %}
             <div class="product-card">
