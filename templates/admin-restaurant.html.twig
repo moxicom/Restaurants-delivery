@@ -64,7 +64,13 @@
                     {% endif %}
 {#                    <p class="product-description">{{ dish.description }}</p>#}
                     <a href="../admin/edit_dish.php?id={{ dish.id }}"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
-                    <a href="#"><button type="button" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button></a>
+{#                    <a href="#">#}
+                    <form action="../admin/delete_dish.php" method="post">
+                        <input type="hidden" name="dishId" value="{{ dish.id }}">
+                        <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
+                        <button type="submit" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button>
+                    </form>
+{#                    </a>#}
                 </div>
             </div>
         {% endfor %}

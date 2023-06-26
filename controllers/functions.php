@@ -47,7 +47,7 @@ function restaurantExist(&$id, &$db){
 	return false;
 }
 
-function getDishById(&$dish, &$dish_id, &$db){
+function getDishById(&$dish, &$dish_id, &$db) : bool {
 	$sql = "SELECT * FROM `menu` WHERE `id` = $dish_id";
 	if($result = $db->query($sql)){
 		$dish = $result->fetch_assoc();

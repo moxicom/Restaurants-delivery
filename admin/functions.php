@@ -1,5 +1,5 @@
 <?php
-
+require_once("../controllers/functions.php");
 function isImageValid(&$image): bool
 {
 	$mime = mime_content_type($image["tmp_name"]);
@@ -44,7 +44,7 @@ function addImage(&$image, &$db, &$image_error, &$insertedImageId){
 		$image_error = true;
 	}
 }
-function deleteImageById(&$id, &$db){
+function deleteImageById(&$id, &$db) : bool {
 	$sql = "SELECT * FROM `images` WHERE `id` = $id";
 	$result = $db->query($sql);
 	if($result->num_rows > 0){
@@ -66,8 +66,7 @@ function deleteImageById(&$id, &$db){
 //	}
 	return true;
 }
-
-function updateImage(&$id, &$db, &$image, &$errorText){ // returns true if success
+function updateImage(&$id, &$db, &$image, &$errorText) : bool { // returns true if success
 	// echo "id before alchemy = $id"."<br>";
 	if(isImageValid($image)){
 		// echo "new image is valid"."<br>";
@@ -123,4 +122,32 @@ function updateImage(&$id, &$db, &$image, &$errorText){ // returns true if succe
 		$errorText = "Новое изображение не прошло валидацию. Размер файла должен быть не больше 2 Мб";
 		return false;
 	}
+}
+function deleteDishById(&$id, &$db, &$errorText = null) : bool {
+	// УДАЛИТЬ ИЗОБРАЖЕНИЕ -> УДАЛИТЬ ЕГО ИЗ БД -> УДАЛИТЬ СТРОКУ О БЛЮДЕ В БД.
+	// ФУНКЦИИ, КОТОРЫЕ УЖЕ ЕСТЬ:
+	// deleteImageById. Удаляет из сервера
+	$dish = null;
+	if(getDishById($dish, $id, $db)){
+		$image_id = $dish["image_id"];
+		if(deleteImageById($image_id, $db)){
+			if($db->query("DELETE FROM `images` WHERE `id`=$image_id")){
+				if($db->query("DELETE FROM `recommended` WHERE `dish_id`=$id")){
+					if($db->query("DELETE FROM `menu` WHERE `id`=$id")){
+						return true;
+					}
+					$errorText = "Изображение удалено. Не удалось удалить блюдо из базы данных. Id = $id";
+					return false;
+				}
+				$errorText = "Изображение удалено. Не удалось удалить блюдо из рекомендованного. Попробуйте сделать это вручную";
+				return false;
+			}
+			$errorText = "Изображение удалено с сервера, но не из базы данных. Не удалось удалить блюдо из базы данных";
+			return false;
+		}
+		$errorText = "Не удалось удалить изображение из сервера";
+		return false;
+	}
+	$errorText = "Такого блюда не существует";
+	return false;
 }
