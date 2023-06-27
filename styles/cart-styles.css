@@ -51,6 +51,7 @@
     margin-right: 10px;
     width: 120px;
     overflow: hidden;
+    border-radius: 10px;
 }
 .cart-image-box img{
     height: 100%;

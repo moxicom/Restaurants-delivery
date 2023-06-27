@@ -15,6 +15,7 @@ $view = new Environment($loader);
  * @var $db
  */
 $dishes = array();
+$cart = array();
 if(isset($_SESSION["cart"])){
 	$cart = $_SESSION["cart"];
 	foreach ($cart as $dish_id => $quantity){
@@ -29,7 +30,8 @@ try {
 	echo $view->render("cart.html.twig", array(
 		"title" => "Корзина",
 		"header" => "Корзина",
-		"cart" => $dishes
+		"cart" => $dishes,
+		"amount" => $cart
 	));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }

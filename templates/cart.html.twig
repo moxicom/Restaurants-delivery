@@ -9,25 +9,26 @@
     <div class="cart-container">
         <div class="cart-header">
             <h3 class="cart-heading">Корзина</h3>
-            <h5 class="cart-action">Убрать все</h5>
+            <h5 class="cart-action deleteAll-btn">Убрать все</h5>
         </div>
-        <div class="cart-items">
+        <div class="cart-items" id="items-container">
             {% for item in cart %}
-            <div class="cart-item">
+                {% set id=item.id %}
+            <div class="cart-item" id = "item{{ id }}">
                 <div class="cart-image-box">
                     <img src="../uploaded_images/{{ item.image_name }}" style="height: 120px" />
                 </div>
                 <div class="cart-about">
-                    <h1 class="cart-title">{{ item.dishName | slice(0, 18) ~ (item.dishName|length > 15 ? '...' : '') }}</h1>
+                    <h1 class="cart-title">{{ item.dishName | slice(0, 18) ~ (item.dishName|length > 15 ? "..." : "") }}</h1>
                     <h3 class="cart-subtitle">₽{{ item.cost }}</h3>
                 </div>
                 <div class="cart-counter">
-                    <div class="cart-btn">+</div>
-                    <div class="cart-count">2</div>
-                    <div class="cart-btn">-</div>
+                    <div class="cart-btn increase-btn" data-id="{{ id }}">+</div>
+                    <div class="cart-count" id="amount{{ id }}">{{ amount[id] }}</div>
+                    <div class="cart-btn decrease-btn" data-id="{{ id }}">-</div>
                 </div>
                 <div class="cart-prices">
-                    <div class="cart-remove">Убрать</div>
+                    <div class="cart-remove delete-btn" data-id="{{ id }}">Убрать</div>
                 </div>
             </div>
             {% endfor %}
@@ -38,22 +39,88 @@
 {% block scripts %}
     <script>
         $(document).ready(function() {
-            $('.increase-btn').click(function() {
-                var itemId = $(this).data('id');
-
+            $(".increase-btn").click(function() {
+                console.log("increase clicked");
+                var product_id = $(this).data("id");
+                console.log(product_id);
                 // Отправить запрос на сервер для увеличения количества предмета
                 $.ajax({
-                    url: '',
-                    type: 'POST',
-                    data: { id: itemId },
+                    url: "../controllers/cart.php",
+                    type: "POST",
+                    data: {
+                        product_id: product_id,
+                        add: true
+                    },
                     success: function(response) {
                         // Обновить отображение количества предмета
-                        var quantityElement = $(this).prev('span');
-                        var newQuantity = parseInt(quantityElement.text()) + 1;
-                        quantityElement.text('Quantity: ' + newQuantity);
+                        var quantityElement = document.getElementById("amount"+product_id);
+                        var newQuantity = parseInt(quantityElement.innerText) + 1;
+                        quantityElement.innerText = newQuantity;
                     }
                 });
             });
+
+
+            $(".decrease-btn").click(function() {
+                console.log("decrease clicked");
+                var product_id = $(this).data("id");
+                console.log(product_id);
+                $.ajax({
+                    url: "../controllers/cart.php",
+                    type: "POST",
+                    data: {
+                        product_id: product_id,
+                        subtract: true
+                    },
+                    success: function(response) {
+                        // Обновить отображение количества предмета
+                        var quantityElement = document.getElementById("amount"+product_id);
+                        var newQuantity = parseInt(quantityElement.innerText) - 1;
+                        if(newQuantity <= 0){
+                            quantityElement.innerText = "0";
+                        }
+                        else{
+                            quantityElement.innerText = newQuantity;
+                        }
+                    }
+                });
+            });
+
+
+            $(".delete-btn").click(function() {
+                console.log("Delete clicked");
+                var product_id = $(this).data("id");
+                console.log(product_id);
+                $.ajax({
+                    url: "../controllers/cart.php",
+                    type: "POST",
+                    data: {
+                        product_id: product_id,
+                        delete: true
+                    },
+                    success: function(response) {
+                        var element = document.getElementById("item" + product_id);
+                        element.remove();
+                    }
+                });
+            });
+
+
+            $(".deleteAll-btn").click(function() {
+                console.log("Delete all clicked");
+                $.ajax({
+                    url: "../controllers/cart.php",
+                    type: "POST",
+                    data: {
+                        deleteAll: true
+                    },
+                    success: function(response) {
+                        var element = document.getElementById("items-container");
+                        element.remove();
+                    }
+                });
+            });
+
         });
     </script>
 {% endblock %}
