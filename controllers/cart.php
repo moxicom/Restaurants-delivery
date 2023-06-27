@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		header("Content-Type: application/json");
 		print_r(json_encode($response));
 	}
-	else {
+	elseif($_POST["add"]){
 		$product_id = $_POST["product_id"];
 		function addToCart($product_id) {
 			if (!isset($_SESSION["cart"])) {
@@ -33,6 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			}
 		}
 		addToCart($product_id);
+	}
+	elseif($_POST[""]){
+
 	}
 }
 elseif($_SERVER["REQUEST_METHOD"] == "GET"){

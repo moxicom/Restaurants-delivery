@@ -20,18 +20,27 @@
 
 {% extends "base.html.twig" %}
 {% block content %}
+    <script src="../js/cart.js"></script>
     <div class="food-page-item">
         <h1 class="food-page-item-mobile">{{ dish.dishName }}</h1>
         <div class="food-page-item-img">
-            <img src="../uploaded_images/{{dish.image_name}}">
+            <img src="../uploaded_images/{{dish.image_name}}" onload="checkCart('{{ dish.id }}')">
         </div>
         <div class="food-page-item-description">
             <h1>{{ dish.dishName }}</h1>
             <span class="food-page-item-cost">₽ {{ dish.cost }}</span>
             <p>{{dish.description}}</p>
-            <button class="food-page-item-btn">
+            <a class="food-page-item-btn"
+               id="addToCartButton{{ dish.id }}"
+               onclick="addToCart('{{ dish.id }}')">
                 Добавить в корзину
-            </button>
+            </a>
+            <a class="food-page-item-btn"
+               id="removeFromCartButton{{ dish.id }}"
+               onclick="removeFromCart('{{ dish.id }}')"
+               style="display: none">
+                Убрать из корзины
+            </a>
         </div>
     </div>
 {% endblock %}

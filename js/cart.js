@@ -4,7 +4,8 @@ function addToCart(product_id) {
         type: 'POST',
         url: '../controllers/cart.php',
         data: {
-            product_id: product_id
+            product_id: product_id,
+            add: true
         },
         success: function(response) {
             // Обработка успешного выполнения запроса

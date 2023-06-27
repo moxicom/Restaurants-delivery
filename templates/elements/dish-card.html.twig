@@ -2,7 +2,7 @@
     <div class="food-item-prop">
         <img src="../uploaded_images/{{item.image_name}}" onload="checkCart('{{ item.id }}')">
         <div class="food-item-buttons">
-            <a id="addToCartButton{{ item.id }}" onclick="addToCart('{{ item.id }}')" class="food-item-button">В корзину</a>
+            <a id="addToCartButton{{ item.id }}" onclick="addToCart('{{ item.id }}')" class="food-item-button" style="">В корзину</a>
             <a id="removeFromCartButton{{ item.id }}"
                onclick="removeFromCart('{{ item.id }}')"
                class="food-item-button" style="display: none">Убрать из корзины

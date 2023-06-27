@@ -41,7 +41,7 @@ header {
     color: #CEB64C;
     position: relative;
     text-decoration: none;
-    transition: color 0.3s, text-shadow 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
     margin: 0 20px;
 }
 
@@ -60,6 +60,18 @@ header {
     color: #CEB64C;
     text-decoration: none;
     margin-left: 8.3%;
+}
+
+.cart-icon{
+    padding-top: 10px;
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+    color: #ceb64c;
+    transition: color 0.3s ease-in-out;
+}
+.cart-icon:hover{
+    color: #ebe1b8;
 }
 
 
@@ -117,7 +129,7 @@ header {
 
 .food-page-item-btn{
     background-color: #CEB64C;
-    height: 50px;
+    padding: 15px 0;
     color: #272727;
     font-size: 1.2em;
     text-transform: uppercase;
@@ -127,6 +139,9 @@ header {
     border-radius: 50px;
     margin-top: 20px;
     transition: 0.2s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+
 }
 
 .food-page-item-btn:hover{
