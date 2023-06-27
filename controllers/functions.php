@@ -1,6 +1,6 @@
 <?php
 function getImageNameById(&$id, &$db){
-    $nameSql = $db->query("SELECT * FROM images WHERE id = ".$id);
+    $nameSql = $db->query("SELECT * FROM `images` WHERE `id` = ".$id);
     if ($nameSql->num_rows > 0){
         $image_name = $nameSql->fetch_assoc()['image_name'];
 	    $filePath = "../uploaded_images/".$image_name;
