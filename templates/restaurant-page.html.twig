@@ -2,6 +2,7 @@
 {% block header %} {{header}} {% endblock %}
 
 {% block content %}
+<script src="../js/cart.js"></script>
 <div id="food-menu">
     {% for dish in dishes %}
         {% include "./elements/dish-card.html.twig" with {"item": dish} %}

@@ -3,6 +3,7 @@
         "twig/twig": "^3.6",
         "symfony/asset": "^5.4",
       "ext-mysqli": "*",
-      "ext-fileinfo": "*"
+      "ext-fileinfo": "*",
+      "ext-json": "*"
     }
 }

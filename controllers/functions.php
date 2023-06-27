@@ -13,7 +13,6 @@ function getImageNameById(&$id, &$db){
     }
     return $image_name; 
 }
-
 function getAllRestaurants(&$db): array
 {
     $result = $db->query("SELECT * FROM `restaurants`");
@@ -23,7 +22,6 @@ function getAllRestaurants(&$db): array
     }
     return $restaurants;
 }
-
 function getRestaurantById($id, &$db){ // returns restaurant
 	$sql = "SELECT * FROM `restaurants` WHERE id = ".$id;
 	$result = $db->query($sql);
@@ -37,7 +35,6 @@ function getRestaurantById($id, &$db){ // returns restaurant
 		return null;
 	}
 }
-
 function restaurantExist(&$id, &$db){
 	$sql = "SELECT * FROM `restaurants` WHERE `id` = $id";
 	$result = $db->query($sql);
@@ -46,7 +43,6 @@ function restaurantExist(&$id, &$db){
 	}
 	return false;
 }
-
 function getDishById(&$dish, &$dish_id, &$db) : bool {
 	$sql = "SELECT * FROM `menu` WHERE `id` = $dish_id";
 	if($result = $db->query($sql)){
