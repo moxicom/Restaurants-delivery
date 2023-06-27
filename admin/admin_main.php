@@ -164,7 +164,7 @@ if (!isset($_SESSION["logged"])) {
                 echo '</form>';
             }
             ?>
-            <a href="restauarants.php" class="btn btn-primary btn-lg btn-block" role="button"
+            <a href="restaurants.php" class="btn btn-primary btn-lg btn-block" role="button"
                style="margin-top: 50px">Перейти к настройкам ресторанов</a>
 
     </div>

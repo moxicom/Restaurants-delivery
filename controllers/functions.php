@@ -24,7 +24,7 @@ function getAllRestaurants(&$db): array
     return $restaurants;
 }
 
-function getRestaurantById($id, &$db){
+function getRestaurantById($id, &$db){ // returns restaurant
 	$sql = "SELECT * FROM `restaurants` WHERE id = ".$id;
 	$result = $db->query($sql);
 	if($result->num_rows > 0){

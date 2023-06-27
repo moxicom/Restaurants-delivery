@@ -151,3 +151,32 @@ function deleteDishById(&$id, &$db, &$errorText = null) : bool {
 	$errorText = "Такого блюда не существует";
 	return false;
 }
+function deleteRestaurantById(&$id, &$db, &$errorText = null) : bool{
+	//СНАЧАЛА УДАЛИТЬ ИЗОБРАЖЕНИЕ РЕСТОРАНА. ПОТОМ ПРОЙТИСЬ ПО ВСЕМ БЛЮДАМ. УДАЛИТЬ СТРОЧКУ РЕСТОРАНА
+	if(!restaurantExist($id, $db)){
+		$errorText = "Данного ресторана не существует";
+		return false;
+	}
+	$restaurant = getRestaurantById($id, $db);
+	$image_id = $restaurant["image_id"];
+	if(!deleteImageById($image_id, $db)){
+		$errorText = "Не удалось удалить изображение из сервера";
+		return false;
+	}
+	if(!($db->query("DELETE FROM `images` WHERE `id`=$image_id"))){
+		$errorText = "Изображение удалено с сервера, но не из базы данных. Не удалось удалить блюдо из базы данных";
+		return false;
+	}
+	$dishes = array();
+	$result = $db->query("SELECT * FROM `menu` WHERE `restaurantId` = $id");
+	while ($dish = $result->fetch_assoc()) {
+		if(!deleteDishById($dish["id"], $db, $errorText)){
+			return false;
+		}
+	}
+	if(!($db->query("DELETE FROM `restaurants` WHERE `id`=$id"))){
+		$errorText .= "Все составляющие ресторана удалены. Но возникла ошибка при удалении подробностей ресторана";
+		return false;
+	}
+	return true;
+}

@@ -29,7 +29,10 @@
     <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
     <p><b>Почта:</b> {{ restaurant.email}}</p>
     <a href="../admin/edit_restaurant.php?id={{ restaurant.id }}"><button  type="button" class="btn btn-primary">Редактировать</button></a>
-    <a href="#"><button type="button" class="btn btn-danger">Удалить</button></a>
+    <form action="../admin/delete_restaurant.php" method="post" style="margin: 5px 0">
+        <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
     <h2 style="padding: 30px 0 0 0">Блюда</h2>
     <a href="../admin/create_dish.php?id={{ restaurant.id }}"><button type="button" class="btn btn-primary">Добавить новое</button></a>
     <div class="cards-container">
@@ -64,13 +67,11 @@
                     {% endif %}
 {#                    <p class="product-description">{{ dish.description }}</p>#}
                     <a href="../admin/edit_dish.php?id={{ dish.id }}"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
-{#                    <a href="#">#}
                     <form action="../admin/delete_dish.php" method="post">
                         <input type="hidden" name="dishId" value="{{ dish.id }}">
                         <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
                         <button type="submit" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button>
                     </form>
-{#                    </a>#}
                 </div>
             </div>
         {% endfor %}
