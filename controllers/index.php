@@ -23,8 +23,11 @@ $restAmount = $result->fetch_assoc()['COUNT(*)'];
 $sql = "SELECT COUNT(*) FROM `menu`";
 $result = $db->query($sql);
 $dishesAmount = $result->fetch_assoc()['COUNT(*)'];
+$sql = "SELECT AVG(cost) FROM `menu`";
+$result = $db->query($sql);
+$dish_avg_price = intval($result->fetch_assoc()['AVG(cost)']);
 
-$sql = "SELECT * FROM recommended";
+$sql = "SELECT * FROM `recommended`";
 $result = $db->query($sql);
 $recommended = array();
 
@@ -57,7 +60,8 @@ try {
 "title" => "Главная",
 "items" => $recommended,
 "restaurantsAmount" =>$restAmount,
-"dishesAmount" => $dishesAmount
+"dishesAmount" => $dishesAmount,
+"avgPrice" => $dish_avg_price,
     ));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }

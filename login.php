@@ -14,7 +14,7 @@ $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $username = trim($_POST["username"]);
     $password = trim($_POST["password"]);
-
+//    echo password_hash($password, PASSWORD_DEFAULT);
     if (empty($username)) {
         $error .= "<p class='error'>Please enter login.</p>";
     }
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $error .=   "<p class='error'>Please enter your password.</p>";
     }
     if(empty($error)){
-        $sql = "SELECT * FROM admins WHERE username = '$username'";
+        $sql = "SELECT * FROM `admins` WHERE `username` = '$username'";
         $result = $db->query($sql);
         if($result->num_rows > 0){
             $row = mysqli_fetch_assoc($result);

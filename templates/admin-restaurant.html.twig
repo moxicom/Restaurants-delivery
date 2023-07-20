@@ -6,75 +6,80 @@
     {% set  main_header = "Данный ресторан не найден" %}
 {% endif %}
 
-{% block head %}
-    <link rel="stylesheet" href="../styles/admin-styles.css">
-{% endblock %}
+{#{% block head %}#}
+{#    <link rel="stylesheet" href="../styles/admin-styles.css">#}
+{#{% endblock %}#}
 
 {% block content %}
     {% if error == false %}
-    <h1 style="padding-top: 20px"><img src="../uploaded_images/{{ restaurant.image_name }}"
-                                       width="160"
-                                       height="160"
-                                       style="margin: 0 10px 0 0; border-radius: 10px;"/>
-        {{ restaurant.restaurantName }}
-    </h1>
-    <p><b>Адрес:</b> {{ restaurant.address}}</p>
-    <p><b>Кухня:</b>
-        {% if restaurant.cuisine %}
-            {{ restaurant.cuisine}}
-        {% else %}
-            {{ "Не указана" }}
-        {% endif %}
-    </p>
-    <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
-    <p><b>Почта:</b> {{ restaurant.email}}</p>
-    <a href="../admin/edit_restaurant.php?id={{ restaurant.id }}"><button  type="button" class="btn btn-primary">Редактировать</button></a>
-    <form action="../admin/delete_restaurant.php" method="post" style="margin: 5px 0">
-        <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
-        <button type="submit" class="btn btn-danger">Удалить</button>
-    </form>
+    <div class="white-main-container">
+        <h1 style="padding-top: 20px"><img src="../uploaded_images/{{ restaurant.image_name }}"
+                                           width="160"
+                                           height="160"
+                                           style="margin: 0 10px 0 0; border-radius: 10px;"/>
+            {{ restaurant.restaurantName }}
+        </h1>
+        <p><b>Адрес:</b> {{ restaurant.address}}</p>
+        <p><b>Кухня:</b>
+            {% if restaurant.cuisine %}
+                {{ restaurant.cuisine}}
+            {% else %}
+                {{ "Не указана" }}
+            {% endif %}
+        </p>
+        <p><b>Телефон:</b> {{ restaurant.phoneNumber}}</p>
+        <p><b>Почта:</b> {{ restaurant.email}}</p>
+        <a href="../admin/edit_restaurant.php?id={{ restaurant.id }}"><button  type="button" class="btn btn-primary">Редактировать</button></a>
+        <form action="../admin/delete_restaurant.php" method="post" style="margin: 5px 0">
+            <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
+
+    <div class="white-main-container" style="margin: 60px 0 30px">
     <h2 style="padding: 30px 0 0 0">Блюда</h2>
     <a href="../admin/create_dish.php?id={{ restaurant.id }}"><button type="button" class="btn btn-primary">Добавить новое</button></a>
-    <div class="cards-container">
-        {% for dish in dishes %}
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="../uploaded_images/{{ dish.image_name }}" alt="Изображение" >
+        <div class="cards-container">
+            {% for dish in dishes %}
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../uploaded_images/{{ dish.image_name }}" alt="Изображение" >
+                    </div>
+                    {% set maxDescriptionLength = 100 %}
+                    <div class="product-info">
+                        <h3 class="product-title">{{ dish.dishName }}</h3>
+                        <p class="product-price">Цена: ₽{{ dish.cost }}</p>
+                        {% if dish.description | length > maxDescriptionLength %}
+                            {% set shortenedDescription = dish.description | slice(0, maxDescriptionLength) ~ '...' %}
+                            <p class="short-description">{{ shortenedDescription }}
+                                <a href="#" class="show-more">
+                                    <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
+                                        Подробнее
+                                    </button>
+                                </a>
+                            </p>
+                            <p class="full-description" style="display: none;">
+                                {{ dish.description }}
+                                <a href="#" class="show-less">
+                                    <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
+                                        Скрыть
+                                    </button>
+                                </a>
+                            </p>
+                        {% else %}
+                            <p>{{ dish.description }}</p>
+                        {% endif %}
+    {#                    <p class="product-description">{{ dish.description }}</p>#}
+                        <a href="../admin/edit_dish.php?id={{ dish.id }}"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
+                        <form action="../admin/delete_dish.php" method="post">
+                            <input type="hidden" name="dishId" value="{{ dish.id }}">
+                            <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
+                            <button type="submit" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button>
+                        </form>
+                    </div>
                 </div>
-                {% set maxDescriptionLength = 100 %}
-                <div class="product-info">
-                    <h3 class="product-title">{{ dish.dishName }}</h3>
-                    <p class="product-price">Цена: ₽{{ dish.cost }}</p>
-                    {% if dish.description | length > maxDescriptionLength %}
-                        {% set shortenedDescription = dish.description | slice(0, maxDescriptionLength) ~ '...' %}
-                        <p class="short-description">{{ shortenedDescription }}
-                            <a href="#" class="show-more">
-                                <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
-                                    Подробнее
-                                </button>
-                            </a>
-                        </p>
-                        <p class="full-description" style="display: none;">
-                            {{ dish.description }}
-                            <a href="#" class="show-less">
-                                <button type="button" class="btn btn-secondary btn-sm" style="width: 120px;">
-                                    Скрыть
-                                </button>
-                            </a>
-                        </p>
-                    {% else %}
-                        <p>{{ dish.description }}</p>
-                    {% endif %}
-{#                    <p class="product-description">{{ dish.description }}</p>#}
-                    <a href="../admin/edit_dish.php?id={{ dish.id }}"><button type="button" class="btn btn-primary" style="margin: 2px 0; width: 120px;">Изменить</button></a>
-                    <form action="../admin/delete_dish.php" method="post">
-                        <input type="hidden" name="dishId" value="{{ dish.id }}">
-                        <input type="hidden" name="restaurantId" value="{{ restaurant.id }}">
-                        <button type="submit" class="btn btn-danger" style="margin: 2px 0; width: 120px;">Удалить</button>
-                    </form>
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
     <script>
         const showMoreButton = document.querySelector('.show-more');

@@ -1,36 +1,38 @@
 {% extends "admin-base.html.twig" %}
 
 {% block content %}
-    <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Название</th>
-            <th scope="col">Адрес</th>
-            <th scope="col">Кухня</th>
-            <th scope="col">Номер телефона</th>
-            <th scope="col">Почта</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for restaurant in restaurants %}
+    <div class="white-main-container" style="padding: 20px 20px">
+        <table class="table table-hover">
+            <thead class="thead-dark">
             <tr>
-                <th scope="row">{{ loop.index }}</th>
-                <td>{{ restaurant.restaurantName }}</td>
-                <td>{{ restaurant.address }}</td>
-                <td>{{ restaurant.cuisine }}</td>
-                <td>{{ restaurant.phoneNumber }}</td>
-                <td>{{ restaurant.email }}</td>
-                <td><a href="../admin/restaurant_page.php?id={{ restaurant.id }}" class="btn btn-primary btn-sm btn-block" role="button"
-                    >Подробнее</a>
-                </td>
+                <th scope="col">#</th>
+                <th scope="col">Название</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Кухня</th>
+                <th scope="col">Номер телефона</th>
+                <th scope="col">Почта</th>
+                <th scope="col"></th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div style="display: flex; width: 100%; justify-content: center;">
-        <a href="../admin/create_restaurant.php" class="btn btn-primary btn-lg" role="button"
-           style="margin-top: 50px">Добавить новый ресторан</a>
+            </thead>
+            <tbody>
+            {% for restaurant in restaurants %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ restaurant.restaurantName }}</td>
+                    <td>{{ restaurant.address }}</td>
+                    <td>{{ restaurant.cuisine }}</td>
+                    <td>{{ restaurant.phoneNumber }}</td>
+                    <td>{{ restaurant.email }}</td>
+                    <td><a href="../admin/restaurant_page.php?id={{ restaurant.id }}" class="btn btn-primary btn-sm btn-block" role="button"
+                        >Подробнее</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div style="display: flex; width: 100%; justify-content: center;">
+            <a href="../admin/create_restaurant.php" class="btn btn-primary btn-lg" role="button"
+               style="margin-top: 50px">Добавить новый ресторан</a>
+        </div>
     </div>
 {% endblock %}

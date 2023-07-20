@@ -82,8 +82,9 @@
         {% endfor %}
     </div>
     <div style="width: 80%; margin: 0 auto; color: white; font-size: 32px; text-align: center"> 
-        <p>Всего <span class="gold">{{ restaurantsAmount }}</span> ресторанов. Это <span class="gold">{{ dishesAmount }}</span> блюд</p>
+        <p>Всего <span class="gold">{{ restaurantsAmount }}</span> ресторанов. Это <span class="gold">{{ dishesAmount }}</span> блюд. </p> Средняя цена - <span class="gold">{{ avgPrice }}</span> р.
     </div>
+    <br>
     <div style="display: flex;width: 100%; padding: 0 0 70px 0; align-items: center; justify-content: center;">
         <a id="to_rest_button" href="../controllers/restaurants_page.php"> Открыть рестораны </a>
     </div>

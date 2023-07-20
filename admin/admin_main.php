@@ -126,7 +126,17 @@ if (!isset($_SESSION["logged"])) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../styles/favicon.ico">
+    <link rel="stylesheet" href="../styles/admin-styles.css">
 </head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
 
 <body>
     <div class="container">
@@ -136,23 +146,24 @@ if (!isset($_SESSION["logged"])) {
                     </strong> <a href="logout.php" style="float: right;" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Log Out</a></p>
             </div>
         </div>
-        <div class="row">
-            <h2>РЕКОМЕНДУЕМЫЕ БЛЮДА</h2>
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Описание</th>
-                        <th scope="col">Цена</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php echo $recommended ?>
-                </tbody>
-            </table>
-        </div>
+        <div class="white-main-container" style="padding: 20px 40px; margin: 10px 0">
+            <div class="row">
+                <h2>РЕКОМЕНДУЕМЫЕ БЛЮДА</h2>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Описание</th>
+                            <th scope="col">Цена</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php echo $recommended ?>
+                    </tbody>
+                </table>
+            </div>
             <?php
             if(isset($rest_form) && $rest_form != ""){
                 echo $rest_form;
@@ -166,6 +177,6 @@ if (!isset($_SESSION["logged"])) {
             ?>
             <a href="restaurants.php" class="btn btn-primary btn-lg btn-block" role="button"
                style="margin-top: 50px">Перейти к настройкам ресторанов</a>
-
+        </div>
     </div>
 </body>
