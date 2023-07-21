@@ -148,7 +148,7 @@ if (!isset($_SESSION["logged"])) {
         </div>
         <div class="white-main-container" style="padding: 20px 40px; margin: 10px 0">
             <div class="row">
-                <h2>РЕКОМЕНДУЕМЫЕ БЛЮДА</h2>
+                <h2 style="margin-bottom: 10px">Рекомендуемые блюда</h2>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
@@ -177,6 +177,12 @@ if (!isset($_SESSION["logged"])) {
             ?>
             <a href="restaurants.php" class="btn btn-primary btn-lg btn-block" role="button"
                style="margin-top: 50px">Перейти к настройкам ресторанов</a>
+        </div>
+
+        <div class="white-main-container" style="padding: 20px 40px; margin: 20px 0">
+            <div class="row">
+                <h2 style="margin-bottom: 10px">Заказы</h2>
+            </div>
         </div>
     </div>
 </body>

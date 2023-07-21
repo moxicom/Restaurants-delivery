@@ -115,3 +115,26 @@
     color: #E44C4C;
     cursor: pointer;
 }
+
+.buy-btn {
+    width: 100%;
+    margin: 15px 0;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
+.buy-btn a {
+    padding: 10px 30px;
+    border-radius: 50px;
+    background-color: #CEB64C;
+    text-decoration: none;
+    color: #212121;
+    transition: 0.2s ease-in-out;
+}
+
+.buy-btn a:hover {
+    background-color: #ebe1b8;
+    box-shadow: 0 0 30px rgba(192, 169, 122, 0.4);
+
+}

@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block header %}Страница для тестов{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="../styles/log-reg-form.css">
+{% endblock %}
+{% block content %}
+    <div style="min-height: 60vh;">
+        <div class="form-container">
+            <div class="main-container">
+                <div class="form-title">
+                    <h1 style="">Регистрация</h1>
+                </div>
+                <form action="">
+                    <div class="form-group">
+                        <label for="name">Имя</label><input type="text" id="name" required>
+                        <label for="email">Email</label><input type="email" id="email" required>
+                        <label for="phone">Номер телефона</label><input type="text" id="phone" required>
+                        <label for="address">Адрес</label><input type="text" id="address" required>
+                    </div>
+                </form>
+                <div style="width: 100%; display: flex; justify-content: center;">
+                    <a href="#" class="button">Подтвердить</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="main-container" style="margin: 30px 0 0 0;">
+                <div class="form-title">
+                    <h1 style="">Вход</h1>
+                </div>
+                <form action="">
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label><input type="text" id="phone" required>
+                        <label for="pass">Код подтверждения</label><input type="password" id="pass" required>
+                    </div>
+                </form>
+                <div style="width: 100%; display: flex; justify-content: center;">
+                    <a href="#" class="button">Подтвердить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
