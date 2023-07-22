@@ -16,6 +16,9 @@ $view = new Environment($loader);
  */
 $dishes = array();
 $cart = array();
+$user_logged = false;
+
+
 if(isset($_SESSION["cart"])){
 	$cart = $_SESSION["cart"];
 	foreach ($cart as $dish_id => $quantity){
@@ -26,12 +29,18 @@ if(isset($_SESSION["cart"])){
 		}
 	}
 }
+if (isset($_SESSION["user_id"])) {
+    # make request to get all orders
+    $user_logged = true;
+}
+
 try {
 	echo $view->render("cart.html.twig", array(
 		"title" => "Корзина",
 		"header" => "Корзина",
 		"cart" => $dishes,
-		"amount" => $cart
+		"amount" => $cart,
+        "userLogged" => $user_logged,
 	));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }

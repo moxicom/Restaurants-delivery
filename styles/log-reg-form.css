@@ -40,11 +40,14 @@
     padding: 2px 10px;
 }
 
-.button {
+.form-group input[type=submit] {
+    width: auto;
+    margin: 30px 0 0;
     background-color: #CEB64C;
     padding: 10px 30px;
     border-radius: 50px;
     text-decoration: none;
+    font-size: large;
     color: #212121;
     transition: 0.2s ease-in-out;
     margin-bottom: 30px;

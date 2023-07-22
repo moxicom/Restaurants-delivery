@@ -2,13 +2,11 @@
     margin: 0;
     padding: 0;
     min-height: 66vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
 }
 .cart-container{
     width: 70%;
-    padding: 0 0 10px 0;
+    padding: 10px 0;
     background-color: rgba(66, 66, 66, 0.31);
     border-radius: 20px;
     box-shadow: 0 25px 30px rgb(30, 30, 30);
@@ -16,7 +14,7 @@
 .cart-header{
     margin: auto;
     width: 90%;
-    height: 15%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,6 +95,20 @@
     color: #272727;
     cursor: pointer;
 }
+
+.danger-btn {
+    padding: 30px 30px;
+    text-decoration: none;
+    color: #E44C4C;
+    background-color: transparent;
+    transition: 0.1s ease-in-out;
+    border: none;
+}
+
+.danger-btn:hover {
+    text-shadow: 0 0 30px #E44C4C;
+}
+
 .cart-count{
     font-size: 20px;
     font-weight: 900;

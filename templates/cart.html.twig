@@ -1,48 +1,77 @@
 {% extends "base.html.twig" %}
 
-{% block head%}
-<link rel="stylesheet" href="../styles/cart-styles.css">
+{% block head %}
+    <link rel="stylesheet" href="../styles/cart-styles.css">
 {% endblock %}
 
 {% block content %}
-<div class="page-container">
-    <div class="cart-container">
-        <div class="cart-header">
-            <h3 class="cart-heading">Корзина</h3>
-            <h5 class="cart-action deleteAll-btn">Убрать все</h5>
-        </div>
-        <div class="cart-items" id="items-container">
-            {% for item in cart %}
-                {% set id=item.id %}
-            <div class="cart-item" id = "item{{ id }}">
-                <div class="cart-image-box">
-                    <img src="../uploaded_images/{{ item.image_name }}" style="height: 120px" />
+    <div class="page-container">
+
+        <div style="width: 100%; display: flex; justify-content: center">
+            <div class="cart-container">
+                <div class="cart-header">
+                    <h3 class="cart-heading">Корзина</h3>
+                    <h5 class="cart-action deleteAll-btn">Убрать все</h5>
                 </div>
-                <div class="cart-about">
-                    <h1 class="cart-title">{{ item.dishName | slice(0, 18) ~ (item.dishName|length > 15 ? "..." : "") }}</h1>
-                    <h3 class="cart-subtitle">₽{{ item.cost }}</h3>
+                <div class="cart-items" id="items-container">
+                    {% for item in cart %}
+                        {% set id=item.id %}
+                        <div class="cart-item" id="item{{ id }}">
+                            <div class="cart-image-box">
+                                <img src="../uploaded_images/{{ item.image_name }}" style="height: 120px"/>
+                            </div>
+                            <div class="cart-about">
+                                <h1 class="cart-title">{{ item.dishName | slice(0, 18) ~ (item.dishName|length > 15 ? "..." : "") }}</h1>
+                                <h3 class="cart-subtitle">₽{{ item.cost }}</h3>
+                            </div>
+                            <div class="cart-counter">
+                                <div class="cart-btn increase-btn" data-id="{{ id }}">+</div>
+                                <div class="cart-count" id="amount{{ id }}">{{ amount[id] }}</div>
+                                <div class="cart-btn decrease-btn" data-id="{{ id }}">-</div>
+                            </div>
+                            <div class="cart-prices">
+                                <div class="cart-remove delete-btn" data-id="{{ id }}">Убрать</div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                <div class="cart-counter">
-                    <div class="cart-btn increase-btn" data-id="{{ id }}">+</div>
-                    <div class="cart-count" id="amount{{ id }}">{{ amount[id] }}</div>
-                    <div class="cart-btn decrease-btn" data-id="{{ id }}">-</div>
-                </div>
-                <div class="cart-prices">
-                    <div class="cart-remove delete-btn" data-id="{{ id }}">Убрать</div>
+                <div class="buy-btn">
+                    <a href="#">Заказать</a>
                 </div>
             </div>
-            {% endfor %}
         </div>
-        <div class="buy-btn">
-            <a href="#">Заказать</a>
+        {% if userLogged == true %}
+            {#            <form   action="../controllers/cart_page.php" method="POST" #}
+            {#                    style="display: flex; justify-content: center; margin: 40px 0 -30px 0"> #}
+            {#                <input type="submit" name="signOut" class="danger-btn" value="выйти"> #}
+            {#            </form> #}
+            <div style="width: 100%; display: flex; justify-content: center; margin: 40px 0 -30px 0">
+                <a href="../controllers/auth_prop/user_logout.php" class="danger-btn">Выйти</a>
+            </div>
+        {% endif %}
+        <div style="display: flex; justify-content: center; margin: 0 0 50px 0">
+            <div class="cart-container" style="margin: 20px 0">
+                {% if userLogged == true %}
+                    <div class="cart-header">
+                        <h3 class="cart-heading">Заказ №</h3>
+                    </div>
+                {% else %}
+                    <div class="cart-header" style="display: flex; justify-content: center">
+                        <h3 class="cart-heading" style="text-align: center">Для просмотра текущих заказов необходимо
+                            войти</h3>
+                    </div>
+                    <div class="buy-btn">
+                        <a href="../controllers/client_auth.php?m=login">Войти</a>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block scripts %}
     <script>
-        $(document).ready(function() {
-            $(".increase-btn").click(function() {
+        $(document).ready(function () {
+            $(".increase-btn").click(function () {
                 console.log("increase clicked");
                 var product_id = $(this).data("id");
                 console.log(product_id);
@@ -54,9 +83,9 @@
                         product_id: product_id,
                         add: true
                     },
-                    success: function(response) {
+                    success: function (response) {
                         // Обновить отображение количества предмета
-                        var quantityElement = document.getElementById("amount"+product_id);
+                        var quantityElement = document.getElementById("amount" + product_id);
                         var newQuantity = parseInt(quantityElement.innerText) + 1;
                         quantityElement.innerText = newQuantity;
                     }
@@ -64,7 +93,7 @@
             });
 
 
-            $(".decrease-btn").click(function() {
+            $(".decrease-btn").click(function () {
                 console.log("decrease clicked");
                 var product_id = $(this).data("id");
                 console.log(product_id);
@@ -75,14 +104,13 @@
                         product_id: product_id,
                         subtract: true
                     },
-                    success: function(response) {
+                    success: function (response) {
                         // Обновить отображение количества предмета
-                        var quantityElement = document.getElementById("amount"+product_id);
+                        var quantityElement = document.getElementById("amount" + product_id);
                         var newQuantity = parseInt(quantityElement.innerText) - 1;
-                        if(newQuantity <= 0){
+                        if (newQuantity <= 0) {
                             quantityElement.innerText = "0";
-                        }
-                        else{
+                        } else {
                             quantityElement.innerText = newQuantity;
                         }
                     }
@@ -90,7 +118,7 @@
             });
 
 
-            $(".delete-btn").click(function() {
+            $(".delete-btn").click(function () {
                 console.log("Delete clicked");
                 var product_id = $(this).data("id");
                 console.log(product_id);
@@ -101,7 +129,7 @@
                         product_id: product_id,
                         delete: true
                     },
-                    success: function(response) {
+                    success: function (response) {
                         var element = document.getElementById("item" + product_id);
                         element.remove();
                     }
@@ -109,7 +137,7 @@
             });
 
 
-            $(".deleteAll-btn").click(function() {
+            $(".deleteAll-btn").click(function () {
                 console.log("Delete all clicked");
                 $.ajax({
                     url: "../controllers/cart.php",
@@ -117,7 +145,7 @@
                     data: {
                         deleteAll: true
                     },
-                    success: function(response) {
+                    success: function (response) {
                         var element = document.getElementById("items-container");
                         element.remove();
                     }
