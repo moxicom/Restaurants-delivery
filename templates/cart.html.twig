@@ -36,7 +36,7 @@
                     {% endfor %}
                 </div>
                 <div class="buy-btn">
-                    <a href="#">Заказать</a>
+                    <a href="../controllers/auth_prop/user_make_order.php">Заказать</a>
                 </div>
             </div>
         </div>
@@ -52,9 +52,15 @@
         <div style="display: flex; justify-content: center; margin: 0 0 50px 0">
             <div class="cart-container" style="margin: 20px 0">
                 {% if userLogged == true %}
-                    <div class="cart-header">
-                        <h3 class="cart-heading">Заказ №</h3>
-                    </div>
+                    {% if orders is empty %}
+                        <div class="cart-header" style="display: flex; justify-content: center">
+                            <h3 class="cart-heading" style="text-align: center">Заказы отсутствуют</h3>
+                        </div>
+                    {% else %}
+                        <div class="cart-header">
+                            <h3 class="cart-heading">Заказ №</h3>
+                        </div>
+                    {% endif %}
                 {% else %}
                     <div class="cart-header" style="display: flex; justify-content: center">
                         <h3 class="cart-heading" style="text-align: center">Для просмотра текущих заказов необходимо
