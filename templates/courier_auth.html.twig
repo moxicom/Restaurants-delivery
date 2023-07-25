@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block head %}
+    <link rel="stylesheet" href="../styles/log-reg-form.css">
+{% endblock %}
+
+
+
+{% block content %}
+    <div style="min-height: 60vh; padding: 40px 0 0 0">
+        <div class="form-container">
+            <div class="main-container" style="margin: 30px 0 0 0;">
+                <div class="form-title">
+                    <h1 style="">Вход в кабинет курьера</h1>
+                </div>
+                {% if authError == true %}
+                    <div style="width: 100%; display: flex; justify-content: center">
+                        <p style="
+                background-color: rgba(228,76,76,0.24);
+                padding: 15px 40px;
+                border-radius: 10px;
+                border: 2px #E44C4C solid;
+                color: #E44C4C">
+                            Ошибка входа. Проверьте правильность введенных данных
+                        </p>
+                    </div>
+                {% endif %}
+                <form action="../controllers/courier_auth.php" method="post">
+                    <div class="form-group">
+                        <label for="phone">Телефон в формате +79998887766 </label><input type="tel" name="tel"
+                                                                                         pattern="+7[0-9]{11}" required>
+                        <label for="pass">Код подтверждения</label><input type="password" name="pass" id="pass"
+                                                                          required>
+                        <div style="display: flex; justify-content: center">
+                            <input class="button" name="log" type="submit" value="Подтвердить">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

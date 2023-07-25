@@ -220,6 +220,7 @@ header {
 }
 .footer div a{
     text-decoration: none;
+    padding: 0 10px;
     color: #424242;
 }
 

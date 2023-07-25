@@ -55,7 +55,7 @@ if (isset($_SESSION["user_id"])) {
 
             $ordersArray[$order_id][] = $orderItem;
         }
-        print_r($ordersArray);
+//        print_r($ordersArray);
     }
 }
 

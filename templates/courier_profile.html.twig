@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main_styles.css">
+    <link rel="stylesheet" href="../styles/main_page.css">
+    <link rel="icon" type="image/x-icon" href="../styles/favicon.ico">
+    {% block head %} {% endblock %}
+    <title>{{ title }} | RestDelivery</title>
+</head>
+<body>
+<div id="menu">
+    <a href="../controllers/courier/courier_logout.php">Выйти</a>
+</div>
+<div style="width: 100%; display: flex; justify-content: center; color: #909090">
+    {% if isBusy == false %}
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Блюда</th>
+                <th scope="col">Адрес</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for id, order in orders %}
+                <tr>
+                    <td>
+                        {% for dish in order %}
+                            Код товара: {{ dish.dish_id }} - {{ dish.dish_name }} - {{ dish.dish_amount }} шт.
+                            <br>
+                        {% endfor %}
+                    </td>
+                    <td> {{ order.0.address }}</td>
+                    <td>
+                        <form action="../controllers/courier_profile.php" method="post">
+                            <input type="hidden" name="order_id" value="{{ id }}">
+                            <input type="submit" name="pick" value="Выбрать заказ">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1>ВЫ ВЫБРАЛИ ЗАКАЗ</h1>
+    {% endif %}
+</div>
+</body>

@@ -17,6 +17,7 @@
     display: flex;
     justify-content: center;
     color: #CEB64C;
+    text-align: center;
 }
 
 .form-group {
