@@ -57,9 +57,19 @@
                             <h3 class="cart-heading" style="text-align: center">Заказы отсутствуют</h3>
                         </div>
                     {% else %}
-                        <div class="cart-header">
-                            <h3 class="cart-heading">Заказ №</h3>
-                        </div>
+                        {% for id, dishes in orders %}
+                            <div class="cart-header">
+                                <h3 class="cart-heading"> Заказ №{{ id }}</h3>
+                            </div>
+                            {% for dish in dishes %}
+                                <div style="margin: 5px 60px; color: #909090">
+                                    <p>{{ dish.dishName }} - {{ dish.dish_amount }} шт.</p>
+                                </div>
+                            {% endfor %}
+                            <div style="margin: 5px 60px; color: #909090">
+                                <p>Курьер: {{ dishes.0.taken }}</p>
+                            </div>
+                        {% endfor %}
                     {% endif %}
                 {% else %}
                     <div class="cart-header" style="display: flex; justify-content: center">
