@@ -10,7 +10,7 @@
     {% block head %} {% endblock %}
     <title>{{ title }} | RestDelivery</title>
 </head>
-<body>
+<body style="height: 100%; min-height: 100vh">
 <div id="menu">
     <a href="../controllers/courier/courier_logout.php">Выйти</a>
 </div>
@@ -45,7 +45,21 @@
             </tbody>
         </table>
     {% else %}
-        <h1>ВЫ ВЫБРАЛИ ЗАКАЗ</h1>
+        <div style="">
+            <h1 style="color: #ceb64c">Текущий заказ</h1>
+            <h1>Блюда</h1>
+            {% for dishes in chosenOrder.dishes %}
+                {% for dish in dishes %}
+                    <p>id: {{ dish.dish_id }} - {{ dish.dishName }} - {{ dish.dish_amount }} шт.</p>
+                {% endfor %}
+            {% endfor %}
+            <h1>Адрес, имя, телефон</h1>
+            <p>{{ chosenOrder.address }} </p>
+            <p>{{ chosenOrder.name }}</p>
+            <p>{{ chosenOrder.tel }}</p>
+            <a href="../controllers/courier/order_delivered.php" style="color: #E44C4C; text-decoration: none;
+            padding: 10px 20px; background-color: #424242">Заказ доставлен</a>
+        </div>
     {% endif %}
 </div>
 </body>

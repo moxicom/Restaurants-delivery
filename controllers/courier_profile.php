@@ -47,7 +47,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (!empty($courier["order_id"])) {
     $isBusy = true;
-    // Нужно получить выполняемый заказ
+    $order_id = $courier["order_id"];
+    $chosenOrder = array();
+    $sql = "SELECT orders.dish_id, menu.dishName, orders.dish_amount 
+            FROM `orders`
+            JOIN `menu` ON menu.id = orders.dish_id
+            WHERE orders.order_id = $order_id";
+    if ($result = $db->query($sql)) {
+        while ($row = $result->fetch_assoc()) {
+            $chosenOrder["dishes"][] = array($row);
+        }
+    }
+    $sql = "SELECT user_id FROM `orders` WHERE order_id = $order_id";
+    $client_id = $db->query($sql)->fetch_assoc()["user_id"];
+    $sql = "SELECT clients.name, clients.address, clients.phoneNumber
+            FROM `clients` WHERE id = $client_id";
+    $result = $db->query($sql)->fetch_assoc();
+    $chosenOrder["address"] = $result["address"];
+    $chosenOrder["tel"] = $result["phoneNumber"];
+    $chosenOrder["name"] = $result["name"];
+
 } else {
     $sql = "SELECT orders.order_id, orders.dish_id, menu.dishName, orders.dish_amount, clients.address 
     FROM `orders` 
@@ -82,7 +101,7 @@ try {
         "title" => "Авторизация",
         "isBusy" => $isBusy,
         "orders" => $ordersArray,
-        "chosenOrder" => '',
+        "chosenOrder" => $chosenOrder,
     ));
 } catch (\Twig\Error\LoaderError|\Twig\Error\RuntimeError|\Twig\Error\SyntaxError $e) {
 }
