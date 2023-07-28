@@ -1,4 +1,6 @@
 <?php
+
+
 function getImageNameById(&$id, &$db){
     $nameSql = $db->query("SELECT * FROM `images` WHERE `id` = ".$id);
     if ($nameSql->num_rows > 0){

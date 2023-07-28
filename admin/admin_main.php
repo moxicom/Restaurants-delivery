@@ -2,6 +2,7 @@
 session_start();
 
 require_once("../db_connection.php");
+require_once ("functions.php");
 
 /**
  * @include "../db_connection.php"
@@ -36,6 +37,31 @@ if (!isset($_SESSION["logged"])) {
         $recommended .= '</form>';
         $recommended .= '</td>';
         $recommended .= '</tr>';
+    }
+
+    // Получить все заказы
+    $ordersArray = getAllOrders($db);
+    $orders = '';
+    foreach ($ordersArray as $order_id => $order) {
+        $orders .= '<tr>';
+        $orders .= '<th scope="row">' . $order_id . '</th>';
+        $orders .= '<td>';
+        foreach ($order as $item) {
+          $orders .= $item['dish_id'].'-'.$item['dish_name'].'-'.$item['dish_amount'].' шт.'.'<br>';
+            print_r($item);
+        }
+        if ($order[0]["taken"] != 0) {
+            $disabled = 'disabled="disabled"';
+        }
+        $orders .= '</td>';
+        $orders .= '<td>' . $order[0]['address'] . '</td>';
+        $orders .= '<td>';
+        $orders .= '<form method="POST" action="delete_order.php">';
+        $orders .= '<input type="hidden" name="order_id" value="' . $order_id . '">';
+        $orders .= '<input type="submit" class="btn btn-primary btn-sm btn-block" role="button"'.$disabled.' value="delete" >';
+        $orders .= '</form>';
+        $orders .= '</td>';
+        $orders .= '</tr>';
     }
 
 // Проверка нажатия кнопки и отображение формы
@@ -182,6 +208,19 @@ if (!isset($_SESSION["logged"])) {
         <div class="white-main-container" style="padding: 20px 40px; margin: 20px 0">
             <div class="row">
                 <h2 style="margin-bottom: 10px">Заказы</h2>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Блюда</th>
+                        <th scope="col">Адрес</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php echo $orders ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

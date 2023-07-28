@@ -1,5 +1,6 @@
 <?php
 require_once("../controllers/functions.php");
+
 function isImageValid(&$image): bool
 {
 	$mime = mime_content_type($image["tmp_name"]);
@@ -179,4 +180,35 @@ function deleteRestaurantById(&$id, &$db, &$errorText = null) : bool{
 		return false;
 	}
 	return true;
+}
+
+function getAllOrders(&$db) {
+    $ordersArray = array();
+    $sql = "SELECT orders.order_id, orders.dish_id, menu.dishName, orders.dish_amount, clients.address, orders.taken
+    FROM `orders` 
+    JOIN `menu` ON orders.dish_id = menu.id
+    JOIN `clients` ON clients.id = orders.user_id";
+    if ($result = $db->query($sql)) {
+        while ($row = $result->fetch_assoc()) {
+            $order_id = $row['order_id'];
+            // print_r($row);
+            // Проверяем, существует ли уже массив для данного заказа
+            if (!isset($ordersArray[$order_id])) {
+                $ordersArray[$order_id] = array();
+            }
+
+            // Добавляем информацию о блюде в массив заказа
+            $orderItem = array(
+//                'order_id' => $row['order_id'],
+                'dish_id' => $row['dish_id'],
+                'dish_name' => $row['dishName'],
+                'dish_amount' => $row['dish_amount'],
+                'address' => $row['address'],
+                'taken' => $row['taken']
+            );
+            $ordersArray[$order_id][] = $orderItem;
+        }
+    }
+//    print_r($ordersArray);
+    return $ordersArray;
 }
